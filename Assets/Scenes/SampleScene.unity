@@ -6305,6 +6305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  playerDetectRadius: 1
 --- !u!1 &317544388
 GameObject:
   m_ObjectHideFlags: 0
