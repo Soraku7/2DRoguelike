@@ -46,6 +46,7 @@
     <Analyzer Include="D:\Unity\6000.0.23f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Role\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\JSON.cs" />
     <Compile Include="Assets\TotalJSON\Examples\ExampleSerializeObjects\ExamplePlayerItemObject.cs" />
     <Compile Include="Assets\Tabsil\Sijil\Scripts\Core\GameData.cs" />
@@ -59,12 +60,14 @@
     <Compile Include="Assets\Tabsil\Scripts\Extensions\VectorExtensions.cs" />
     <Compile Include="Assets\Tabsil\Sijil\Scripts\Core\IWantToBeSaved.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\SerializeException.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JSONKeyNotFoundException.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JNumberOverflowException.cs" />
     <Compile Include="Assets\Tabsil\Sijil\Scripts\Core\Sijil.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JValueNullException.cs" />
     <Compile Include="Assets\Scripts\CameraCtl\CameraController.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JValueTypeException.cs" />
+    <Compile Include="Assets\Scripts\Role\Player\PlayerCtrl.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Attributes\ExcludeFromJSONSerializeAttribute.cs" />
     <Compile Include="Assets\Tabsil\Mineral\Scripts\Data\MineralPrefs.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JArrayIndexOutOfRangeException.cs" />
@@ -82,7 +85,7 @@
     <Compile Include="Assets\Tabsil\Scripts\Extensions\TransformExtensions.cs" />
     <Compile Include="Assets\TotalJSON\Internal\CreateStringRunner.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\JValue.cs" />
-    <Compile Include="Assets\Scripts\Role\PlayerCtrl.cs" />
+    <Compile Include="Assets\Scripts\Role\Player\Player.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\JArray.cs" />
     <Compile Include="Assets\TotalJSON\Examples\SerializeAndDeserialize.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JArgumentNullException.cs" />
