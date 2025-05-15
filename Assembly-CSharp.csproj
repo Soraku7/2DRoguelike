@@ -63,11 +63,13 @@
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JNumberOverflowException.cs" />
     <Compile Include="Assets\Tabsil\Sijil\Scripts\Core\Sijil.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JValueNullException.cs" />
+    <Compile Include="Assets\Scripts\CameraCtl\CameraController.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JValueTypeException.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Attributes\ExcludeFromJSONSerializeAttribute.cs" />
     <Compile Include="Assets\Tabsil\Mineral\Scripts\Data\MineralPrefs.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JArrayIndexOutOfRangeException.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Settings\SerializeSettings.cs" />
+    <Compile Include="Assets\Scripts\SpritSorter.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\JNumber.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\JString.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Settings\DeserializeSettings.cs" />
@@ -458,12 +460,6 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>D:\2DRoguelike\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>D:\Unity\6000.0.23f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>D:\Unity\6000.0.23f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Unity\6000.0.23f1c1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

@@ -10,7 +10,7 @@ public class PlayerCtrl : MonoBehaviour
     
     [SerializeField] private MobileJoystick joystick;
 
-    [Header("Setting")]
+    [Header("Settings")]
     [SerializeField] private float moveSpeed;
     void Start()
     {
