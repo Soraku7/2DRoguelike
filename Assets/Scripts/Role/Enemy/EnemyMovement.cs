@@ -6,9 +6,15 @@ public class EnemyMovement : MonoBehaviour
     [Header("Elements")]
     private Player player;
 
+    [Header("Spawn Sequence Related")] 
+    [SerializeField] private SpriteRenderer render;
+    [SerializeField] private SpriteRenderer spawnIndicator;
+
     [Header("Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectRadius;
+    
+    [SerializeField] private ParticleSystem passAwayParticle;
     
     [Header("Debugger")]
     [SerializeField] private bool debug;
@@ -21,6 +27,11 @@ public class EnemyMovement : MonoBehaviour
             Debug.LogWarning("Player not found");
             Destroy(gameObject);
         }
+        
+        render.enabled = false;
+        spawnIndicator.enabled = true;
+        
+        
     }
     
     private void Update()
@@ -28,6 +39,14 @@ public class EnemyMovement : MonoBehaviour
         FollowPlayer();
         
         TryAttack();
+    }
+
+    private void PassAway()
+    {
+        passAwayParticle.transform.SetParent(null);
+        passAwayParticle.Play();
+        
+        Destroy(gameObject);
     }
 
     private void FollowPlayer()
@@ -45,7 +64,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (distance <= playerDetectRadius)
         {
-            Destroy(gameObject);
+            PassAway();
         }
     }
 
