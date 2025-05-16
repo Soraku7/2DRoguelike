@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -31,7 +32,14 @@ public class EnemyMovement : MonoBehaviour
         render.enabled = false;
         spawnIndicator.enabled = true;
         
-        
+        Vector3 targetScale = spawnIndicator.transform.localScale * 1.3f;
+        spawnIndicator.transform.DOScale(targetScale, 0.3f).SetLoops(4).OnComplete(() =>
+        {
+            render.enabled = true;
+            spawnIndicator.enabled = false;
+
+            moveSpeed = 1;
+        });
     }
     
     private void Update()
