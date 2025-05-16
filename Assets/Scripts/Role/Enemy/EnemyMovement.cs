@@ -10,12 +10,20 @@ public class EnemyMovement : MonoBehaviour
     [Header("Spawn Sequence Related")] 
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private SpriteRenderer spawnIndicator;
+    private bool hasSpawn = false;
 
     [Header("Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectRadius;
     
+    [Header("Effect")]
     [SerializeField] private ParticleSystem passAwayParticle;
+
+    [Header("Attack")] 
+    [SerializeField] private int damage;
+    [SerializeField] private float attackFrequency;
+    private float attackDelay;
+    private float attackTimer;
     
     [Header("Debugger")]
     [SerializeField] private bool debug;
@@ -37,16 +45,20 @@ public class EnemyMovement : MonoBehaviour
         {
             render.enabled = true;
             spawnIndicator.enabled = false;
-
-            moveSpeed = 1;
+            
+            hasSpawn = true;
         });
+
+        attackDelay = 1f / attackFrequency;
     }
     
     private void Update()
     {
+        if (!hasSpawn) return;
         FollowPlayer();
         
-        TryAttack();
+        if(attackTimer >= attackDelay)  TryAttack();
+        else Wait();
     }
 
     private void PassAway()
@@ -65,6 +77,11 @@ public class EnemyMovement : MonoBehaviour
         
         transform.position = targetPosition;
     }
+
+    private void Attack()
+    {
+        attackTimer = 0;
+    }
     
     private void TryAttack()
     {
@@ -72,8 +89,14 @@ public class EnemyMovement : MonoBehaviour
 
         if (distance <= playerDetectRadius)
         {
-            PassAway();
+            // PassAway();
+            Attack();
         }
+    }
+
+    private void Wait()
+    {
+        attackTimer += Time.deltaTime;
     }
 
     private void OnDrawGizmos()
