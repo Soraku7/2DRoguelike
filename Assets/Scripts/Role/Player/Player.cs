@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Components")]
+    private PlayerHealth playerHealth;
+    private void Awake()
     {
-        
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        Debug.Log("Player takes " + damage + " damage");
+        playerHealth.TakeDamage(damage);
     }
 }

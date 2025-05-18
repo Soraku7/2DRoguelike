@@ -91,6 +91,7 @@
     <Compile Include="Assets\TotalJSON\Examples\SerializeAndDeserialize.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Exceptions\JArgumentNullException.cs" />
     <Compile Include="Assets\TotalJSON\Internal\DebugLogger.cs" />
+    <Compile Include="Assets\Scripts\Role\Player\PlayerHealth.cs" />
     <Compile Include="Assets\TotalJSON\Scripts\Attributes\IncludeToJSONSerializeAttribute.cs" />
     <Compile Include="Assets\Tabsil\Scripts\Utilities\VectorUtilities.cs" />
     <Compile Include="Assets\TotalJSON\Internal\JSONRuntimeDebugContainer.cs" />

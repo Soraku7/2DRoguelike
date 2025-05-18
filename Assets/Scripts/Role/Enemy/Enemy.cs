@@ -73,6 +73,8 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         attackTimer = 0;
+
+        player.TakeDamage(damage);
     }
     
     private void TryAttack()
