@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8040602330699588251}
   - component: {fileID: 7173740325196493409}
   - component: {fileID: 1317145846078757826}
-  m_Layer: 0
+  - component: {fileID: 5996253849311204931}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,6 +69,42 @@ MonoBehaviour:
   attackFrequency: 1
   playerDetectRadius: 0.5
   debug: 1
+--- !u!58 &5996253849311204931
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143255679604681733}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &3642587163027883507
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318206159343900100}
   - component: {fileID: 6212184798126463297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5536483826936246463}
   - component: {fileID: 6974426450845784671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +290,7 @@ GameObject:
   - component: {fileID: 3291443130051017566}
   - component: {fileID: 5230519754641509035}
   - component: {fileID: 6885698446859167525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PassAwayPartical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
