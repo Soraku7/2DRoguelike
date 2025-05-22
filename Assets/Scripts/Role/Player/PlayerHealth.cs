@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
     {
         float healthBarValue = (float)health / maxHealth;
         
-        healthTex.text = healthBarValue + " / " + maxHealth;
+        healthTex.text = health + " / " + maxHealth;
         healthSlider.value = healthBarValue;
     }
     

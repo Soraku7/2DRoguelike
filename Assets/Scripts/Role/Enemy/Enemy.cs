@@ -1,10 +1,17 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour
 {
+    
+    [Header("Health")] 
+    [SerializeField] private int maxHealth;
+    private int health;
+    [SerializeField] private TextMeshPro healthText;
+    
     [Header("Elements")]
     private Player player;
     
@@ -32,6 +39,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        health = maxHealth;
+        healthText.text = health.ToString();
+        
         player = FindFirstObjectByType<Player>();
 
         movement = GetComponent<EnemyMovement>();
@@ -76,6 +86,20 @@ public class Enemy : MonoBehaviour
 
         player.TakeDamage(damage);
     }
+
+    public void TakeDamage(int damage)
+    {
+        int realDamage = Mathf.Min(health, damage);
+        
+        health -= realDamage;
+        
+        Debug.Log("Player takes " + damage + " damage");
+
+        if (health <= 0)
+        {
+            PassAway();
+        }
+    }
     
     private void TryAttack()
     {
@@ -113,6 +137,9 @@ public class Enemy : MonoBehaviour
         
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectRadius);
+
+        Gizmos.color = Color.white;
+        
     }
 
 }

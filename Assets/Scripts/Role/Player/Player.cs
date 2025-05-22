@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Player takes " + damage + " damage");
         playerHealth.TakeDamage(damage);
     }
 }
