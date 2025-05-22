@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Attack")] 
     [SerializeField] private int damage;
+    [SerializeField] private Animator animator;
     
     [Header("Animation")] 
     [SerializeField] private float aimLerp;
@@ -40,6 +41,7 @@ public class Weapon : MonoBehaviour
                 break;
             
             case State.Attack:
+                Attacking();
                 break;
         }
         
@@ -57,6 +59,23 @@ public class Weapon : MonoBehaviour
         if (closestEnemy != null) targetUpVector = (closestEnemy.transform.position - transform.position).normalized;
         
         transform.up = Vector3.Lerp(transform.up , targetUpVector , aimLerp * Time.deltaTime);
+    }
+
+    [NaughtyAttributes.Button]
+    private void StartAttack()
+    {
+        animator.Play("Attack");
+        state = State.Attack;
+    }
+
+    private void Attacking()
+    {
+        Attack();
+    }
+
+    private void StopAttack()
+    {
+        state = State.Idle;
     }
 
     private void Attack()
