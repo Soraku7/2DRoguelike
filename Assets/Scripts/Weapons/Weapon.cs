@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -24,6 +25,7 @@ public class Weapon : MonoBehaviour
     [Header("Attack")] 
     [SerializeField] private int damage;
     [SerializeField] private Animator animator;
+    private List<Enemy> damagedEnemies = new List<Enemy>();
     
     [Header("Animation")] 
     [SerializeField] private float aimLerp;
@@ -38,6 +40,7 @@ public class Weapon : MonoBehaviour
         switch (state)
         {
             case State.Idle:
+                AutoAim();
                 break;
             
             case State.Attack:
@@ -45,9 +48,6 @@ public class Weapon : MonoBehaviour
                 break;
         }
         
-        AutoAim();
-        
-        Attack();
     }
 
     private void AutoAim()
@@ -66,6 +66,8 @@ public class Weapon : MonoBehaviour
     {
         animator.Play("Attack");
         state = State.Attack;
+        
+        damagedEnemies.Clear();
     }
 
     private void Attacking()
@@ -76,6 +78,7 @@ public class Weapon : MonoBehaviour
     private void StopAttack()
     {
         state = State.Idle;
+        damagedEnemies.Clear();
     }
 
     private void Attack()
@@ -84,7 +87,13 @@ public class Weapon : MonoBehaviour
 
         foreach (var t in enemies)
         {
-            t.GetComponent<Enemy>().TakeDamage(damage);
+            Enemy enemy = t.GetComponent<Enemy>();
+
+            if (!damagedEnemies.Contains(enemy))
+            {
+                enemy.TakeDamage(damage);
+                damagedEnemies.Add(enemy);
+            }
         }
     }
 

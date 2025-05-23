@@ -94,6 +94,8 @@ public class Enemy : MonoBehaviour
         health -= realDamage;
         
         Debug.Log("Player takes " + damage + " damage");
+        
+        healthText.text = health.ToString();
 
         if (health <= 0)
         {
