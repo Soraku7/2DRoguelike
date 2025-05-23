@@ -24,8 +24,11 @@ public class Weapon : MonoBehaviour
 
     [Header("Attack")] 
     [SerializeField] private int damage;
+
+    [SerializeField] private float attckDelay;
     [SerializeField] private Animator animator;
     private List<Enemy> damagedEnemies = new List<Enemy>();
+    private float attackTimer;
     
     [Header("Animation")] 
     [SerializeField] private float aimLerp;
@@ -56,9 +59,31 @@ public class Weapon : MonoBehaviour
         
         Vector2 targetUpVector = Vector2.up;
 
-        if (closestEnemy != null) targetUpVector = (closestEnemy.transform.position - transform.position).normalized;
+        if (closestEnemy != null)
+        {
+            ManageAttackTimer();
+            targetUpVector = (closestEnemy.transform.position - transform.position).normalized;
+        }
         
         transform.up = Vector3.Lerp(transform.up , targetUpVector , aimLerp * Time.deltaTime);
+        
+        IncrementAttackTimer();
+    }
+
+    private void ManageAttackTimer()
+    {
+
+        if (attackTimer >= attckDelay)
+        {
+            attackTimer = 0;
+            StartAttack();
+        }
+    }
+
+    private void IncrementAttackTimer()
+    {
+        attackTimer += Time.deltaTime;
+
     }
 
     [NaughtyAttributes.Button]
