@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
     [Header("Attack")] 
     [SerializeField] private int damage;
 
-    [SerializeField] private float attckDelay;
+    [SerializeField] private float attackDelay;
     [SerializeField] private Animator animator;
     private List<Enemy> damagedEnemies = new List<Enemy>();
     private float attackTimer;
@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour
     private void ManageAttackTimer()
     {
 
-        if (attackTimer >= attckDelay)
+        if (attackTimer >= attackDelay)
         {
             attackTimer = 0;
             StartAttack();
@@ -93,6 +93,8 @@ public class Weapon : MonoBehaviour
         state = State.Attack;
         
         damagedEnemies.Clear();
+
+        animator.speed = 1f / attackDelay;
     }
 
     private void Attacking()
@@ -128,7 +130,6 @@ public class Weapon : MonoBehaviour
         Vector2 targetUpVector = Vector2.up;
 
         Collider2D[] enmies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
-        
 
         float minDistance = range;
 
