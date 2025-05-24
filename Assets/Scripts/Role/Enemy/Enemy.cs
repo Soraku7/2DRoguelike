@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     [Header("Spawn Sequence Related")] 
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private SpriteRenderer spawnIndicator;
+    [SerializeField] private Collider2D collider;
     private bool hasSpawn = false;
     
     [Header("Effect")]
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour
             SetRenderVisibility();
             
             hasSpawn = true;
+            collider.enabled = true;
 
             movement.StorePlayer(player);
         });

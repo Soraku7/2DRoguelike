@@ -67,6 +67,7 @@ MonoBehaviour:
   healthText: {fileID: 8614531165843643363}
   render: {fileID: 6212184798126463297}
   spawnIndicator: {fileID: 6974426450845784671}
+  collider: {fileID: 0}
   passAwayParticle: {fileID: 5230519754641509035}
   damage: 1
   attackFrequency: 1
@@ -79,7 +80,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143255679604681733}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
