@@ -6879,7 +6879,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000001bc0e139
+  m_ApplyToSortingLayers: 000000001bc0e1395be36d7c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -7411,6 +7411,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864868292}
   m_CullTransparentMesh: 1
+--- !u!4 &867533139 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5920038377887754280, guid: 52355c7c17988744890a4351c61df41c, type: 3}
+  m_PrefabInstance: {fileID: 8247133550047738904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1068541382
 GameObject:
   m_ObjectHideFlags: 0
@@ -8556,8 +8561,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2087576411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 5485319108022510092, guid: 15c981701acaf3f4b840cf2f1f7d3446, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8784,7 +8789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2016661731}
   m_Layer: 0
-  m_Name: --- Effects --- (1)
+  m_Name: '--- Effects --- '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8802,9 +8807,56 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 867533139}
+  - {fileID: 2122800783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2122800782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2122800783}
+  - component: {fileID: 2122800784}
+  m_Layer: 0
+  m_Name: Damage Text Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2122800783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122800782}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2016661731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122800784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122800782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69629f49d6cd6794ea22e356102986c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 7522504447878763644, guid: 52355c7c17988744890a4351c61df41c, type: 3}
 --- !u!1001 &7030967234870961058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8868,7 +8920,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2016661731}
     m_Modifications:
     - target: {fileID: 5920038377887754280, guid: 52355c7c17988744890a4351c61df41c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8888,15 +8940,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5920038377887754280, guid: 52355c7c17988744890a4351c61df41c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5920038377887754280, guid: 52355c7c17988744890a4351c61df41c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5920038377887754280, guid: 52355c7c17988744890a4351c61df41c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5920038377887754280, guid: 52355c7c17988744890a4351c61df41c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8913,6 +8965,14 @@ PrefabInstance:
     - target: {fileID: 7308571765022028267, guid: 52355c7c17988744890a4351c61df41c, type: 3}
       propertyPath: m_Name
       value: Damage Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929987475690725019, guid: 52355c7c17988744890a4351c61df41c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929987475690725019, guid: 52355c7c17988744890a4351c61df41c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2087576411
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8934,4 +8994,3 @@ SceneRoots:
   - {fileID: 562790218}
   - {fileID: 317544389}
   - {fileID: 2016661731}
-  - {fileID: 8247133550047738904}

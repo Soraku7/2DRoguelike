@@ -34,6 +34,9 @@ public class Enemy : MonoBehaviour
     private float attackDelay;
     private float attackTimer;
     
+    [Header("Action")]
+    public static Action<int , Vector2> onDamageTaken;
+    
     [Header("Debugger")]
     [SerializeField] private bool debug;
 
@@ -96,6 +99,8 @@ public class Enemy : MonoBehaviour
         Debug.Log("Player takes " + damage + " damage");
         
         healthText.text = health.ToString();
+        
+        onDamageTaken?.Invoke(damage , transform.position);
 
         if (health <= 0)
         {
