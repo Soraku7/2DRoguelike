@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     private void Update()
     {
-        if(player != null) FollowPlayer();
+        // if(player != null) FollowPlayer();
     }
 
     public void StorePlayer(Player _player)
@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
         this.player = _player;
     }
 
-    private void FollowPlayer()
+    public void FollowPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
         
