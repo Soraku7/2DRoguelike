@@ -7235,6 +7235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e119c38abecbdb04baae62014090a974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 675005539}
 --- !u!114 &675005541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8962,6 +8963,14 @@ PrefabInstance:
     - target: {fileID: 5302495181624136974, guid: 2bc5766660f5e7b4e88659d2ec062aa6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251911682161403773, guid: 2bc5766660f5e7b4e88659d2ec062aa6, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1193760293492947843, guid: b719949afaad59f4c94561b822d7e200, type: 3}
+    - target: {fileID: 7149231307375563345, guid: 2bc5766660f5e7b4e88659d2ec062aa6, type: 3}
+      propertyPath: maxHealth
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
