@@ -13,7 +13,7 @@ public class DamageTextManager : MonoBehaviour
 
     private void Awake()
     {
-        Enemy.onDamageTaken += EnemyHitCallBack;
+        MeleeEnemy.onDamageTaken += EnemyHitCallBack;
     }
 
     private void Start()
@@ -43,7 +43,7 @@ public class DamageTextManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Enemy.onDamageTaken -= EnemyHitCallBack;
+        MeleeEnemy.onDamageTaken -= EnemyHitCallBack;
     }
     
     private void EnemyHitCallBack(int damage , Vector2 enemyPos)

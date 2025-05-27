@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private float attackDelay;
     [SerializeField] private Animator animator;
-    private List<Enemy> damagedEnemies = new List<Enemy>();
+    private List<MeleeEnemy> damagedEnemies = new List<MeleeEnemy>();
     private float attackTimer;
     
     [Header("Animation")] 
@@ -56,14 +56,14 @@ public class Weapon : MonoBehaviour
 
     private void AutoAim()
     {
-        Enemy closestEnemy = GetClosestEnemy();
+        MeleeEnemy closestMeleeEnemy = GetClosestEnemy();
         
         Vector2 targetUpVector = Vector2.up;
 
-        if (closestEnemy != null)
+        if (closestMeleeEnemy != null)
         {
             ManageAttackTimer();
-            targetUpVector = (closestEnemy.transform.position - transform.position).normalized;
+            targetUpVector = (closestMeleeEnemy.transform.position - transform.position).normalized;
             transform.up = targetUpVector;
         }
         
@@ -118,19 +118,19 @@ public class Weapon : MonoBehaviour
 
         foreach (var t in enemies)
         {
-            Enemy enemy = t.GetComponent<Enemy>();
+            MeleeEnemy meleeEnemy = t.GetComponent<MeleeEnemy>();
 
-            if (!damagedEnemies.Contains(enemy))
+            if (!damagedEnemies.Contains(meleeEnemy))
             {
-                enemy.TakeDamage(damage);
-                damagedEnemies.Add(enemy);
+                meleeEnemy.TakeDamage(damage);
+                damagedEnemies.Add(meleeEnemy);
             }
         }
     }
 
-    private Enemy GetClosestEnemy()
+    private MeleeEnemy GetClosestEnemy()
     {
-        Enemy closeEnemy = null;
+        MeleeEnemy closeMeleeEnemy = null;
         Vector2 targetUpVector = Vector2.up;
 
         Collider2D[] enmies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
@@ -141,17 +141,17 @@ public class Weapon : MonoBehaviour
         
         for (int i = 0; i < enmies.Length; i++)
         {
-            Enemy enemyChecked = enmies[i].GetComponent<Enemy>();
-            float distanceToEnemy = Vector2.Distance(transform.position , enemyChecked.transform.position);
+            MeleeEnemy meleeEnemyChecked = enmies[i].GetComponent<MeleeEnemy>();
+            float distanceToEnemy = Vector2.Distance(transform.position , meleeEnemyChecked.transform.position);
 
             if (distanceToEnemy < minDistance)
             {
-                closeEnemy = enemyChecked;
+                closeMeleeEnemy = meleeEnemyChecked;
                 minDistance = distanceToEnemy;
             }
         }
         
-        return closeEnemy;
+        return closeMeleeEnemy;
     }
 
     private void OnDrawGizmos()
