@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private float attackDelay;
     [SerializeField] private Animator animator;
-    private List<MeleeEnemy> damagedEnemies = new List<MeleeEnemy>();
+    private List<Enemy> damagedEnemies = new List<Enemy>();
     private float attackTimer;
     
     [Header("Animation")] 
@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour
 
     private void AutoAim()
     {
-        MeleeEnemy closestMeleeEnemy = GetClosestEnemy();
+        Enemy closestMeleeEnemy = GetClosestEnemy();
         
         Vector2 targetUpVector = Vector2.up;
 
@@ -118,20 +118,19 @@ public class Weapon : MonoBehaviour
 
         foreach (var t in enemies)
         {
-            MeleeEnemy meleeEnemy = t.GetComponent<MeleeEnemy>();
+            Enemy enemy = t.GetComponent<Enemy>();
 
-            if (!damagedEnemies.Contains(meleeEnemy))
+            if (!damagedEnemies.Contains(enemy))
             {
-                meleeEnemy.TakeDamage(damage);
-                damagedEnemies.Add(meleeEnemy);
+                enemy.TakeDamage(damage);
+                damagedEnemies.Add(enemy);
             }
         }
     }
 
-    private MeleeEnemy GetClosestEnemy()
+    private Enemy GetClosestEnemy()
     {
-        MeleeEnemy closeMeleeEnemy = null;
-        Vector2 targetUpVector = Vector2.up;
+        Enemy closeEnemy = null;
 
         Collider2D[] enmies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
 
@@ -141,17 +140,17 @@ public class Weapon : MonoBehaviour
         
         for (int i = 0; i < enmies.Length; i++)
         {
-            MeleeEnemy meleeEnemyChecked = enmies[i].GetComponent<MeleeEnemy>();
-            float distanceToEnemy = Vector2.Distance(transform.position , meleeEnemyChecked.transform.position);
+            Enemy EnemyChecked = enmies[i].GetComponent<Enemy>();
+            float distanceToEnemy = Vector2.Distance(transform.position , EnemyChecked.transform.position);
 
             if (distanceToEnemy < minDistance)
             {
-                closeMeleeEnemy = meleeEnemyChecked;
+                closeEnemy = EnemyChecked;
                 minDistance = distanceToEnemy;
             }
         }
         
-        return closeMeleeEnemy;
+        return closeEnemy;
     }
 
     private void OnDrawGizmos()

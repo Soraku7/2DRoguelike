@@ -20,6 +20,6 @@ public class Player : MonoBehaviour
 
     public Vector2 GetCenter()
     {
-        return collider.offset;
+        return (Vector2)transform.position + collider.offset;
     }
 }

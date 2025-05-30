@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void StorePlayer(Player _player)
     {
-        this.player = _player;
+        player = _player;
     }
 
     public void FollowPlayer()
