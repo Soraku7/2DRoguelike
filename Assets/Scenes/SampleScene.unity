@@ -6516,8 +6516,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 300109861}
-  - component: {fileID: 300109862}
   - component: {fileID: 300109863}
+  - component: {fileID: 300109864}
   m_Layer: 0
   m_Name: BeBoiink
   m_TagString: Untagged
@@ -6541,29 +6541,6 @@ Transform:
   - {fileID: 1836316550}
   m_Father: {fileID: 675005538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &300109862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300109860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecc3f7cafbd74ba40afde3700aa2dfc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitDetectTransform: {fileID: 168043052}
-  hitDetectRadius: 0.3
-  hitCollider: {fileID: 168043053}
-  range: 3
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 64
-  damage: 5
-  attackDelay: 0.5
-  animator: {fileID: 300109863}
-  aimLerp: 12
 --- !u!95 &300109863
 Animator:
   serializedVersion: 7
@@ -6586,6 +6563,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &300109864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300109860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9084c7eb49da7ce468ef5b6c8f77c40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 5
+  attackDelay: 1
+  animator: {fileID: 300109863}
+  aimLerp: 12
+  hitDetectTransform: {fileID: 168043052}
+  hitDetectRadius: 0.43
+  hitCollider: {fileID: 168043053}
 --- !u!1 &317544388
 GameObject:
   m_ObjectHideFlags: 0
@@ -7913,7 +7913,7 @@ Transform:
   m_GameObject: {fileID: 1238171732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 1.069, z: 0}
+  m_LocalPosition: {x: -1, y: 1.069, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7954,9 +7954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a797dce271f01c14ca8d8de4b02bfd02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDetectTransform: {fileID: 0}
-  hitDetectRadius: 1
-  hitCollider: {fileID: 0}
   range: 6
   enemyMask:
     serializedVersion: 2
@@ -7965,6 +7962,7 @@ MonoBehaviour:
   attackDelay: 1
   animator: {fileID: 1238171734}
   aimLerp: 12
+  shootingPoint: {fileID: 1118056125}
   bulletPrefab: {fileID: 7341400433168256401, guid: dafadc005883f3b409fd8b41db957dbb, type: 3}
 --- !u!1 &1376165173
 GameObject:
