@@ -102,13 +102,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
+  healthText: {fileID: 2199590091796059566}
   render: {fileID: 6526595123080410995}
   spawnIndicator: {fileID: 5006185887212102739}
   collider: {fileID: 4988936388258764731}
   passAwayParticle: {fileID: 7300581804365291477}
   playerDetectRadius: 5
   debug: 1
-  healthText: {fileID: 2199590091796059566}
 --- !u!114 &6251911682161403773
 MonoBehaviour:
   m_ObjectHideFlags: 0
