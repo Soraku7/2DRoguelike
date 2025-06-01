@@ -29,7 +29,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float playerDetectRadius;
     
     [Header("Action")]
-    public static Action<int , Vector2> onDamageTaken;
+    public static Action<int , Vector2 , bool> onDamageTaken;
     
     [Header("Debugger")]
     [SerializeField] protected bool debug;
@@ -87,7 +87,7 @@ public abstract class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage , bool isCirticalHit)
     {
         int realDamage = Mathf.Min(health, damage);
         
@@ -97,7 +97,7 @@ public abstract class Enemy : MonoBehaviour
         
         healthText.text = health.ToString();
         
-        onDamageTaken?.Invoke(damage , transform.position);
+        onDamageTaken?.Invoke(damage , transform.position , isCirticalHit);
 
         if (health <= 0)
         {

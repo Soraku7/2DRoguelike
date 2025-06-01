@@ -13,12 +13,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask enemyLayer;
     private int damage;
+    private bool isCriticalHit;
+    private Enemy target;
     private void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
-        
-        float timer = 0;
 
         StartCoroutine(ReleaseCoroutine());
     }
@@ -35,24 +35,28 @@ public class Bullet : MonoBehaviour
         this.rangeWeapon = rangeWeapon;
     }
     
-    public void Shoot(int damage , Vector2 direction)
+    public void Shoot(int damage , Vector2 direction , bool isCriticalHit)
     {
-        Invoke("Release", 1);
+        Invoke(nameof(Release), 3);
         
         this.damage = damage;
+        this.isCriticalHit = isCriticalHit;
         
-        Debug.Log(direction);
         transform.right = direction;
         rig.linearVelocity = direction * moveSpeed;
     }
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (target != null) return;
+        
         if (IsInLayerMask(collider.gameObject, enemyLayer))
         {
+            target = collider.GetComponent<Enemy>();
+            Debug.Log(target.name);
             CancelInvoke();
             
-            Attack(collider.GetComponent<Enemy>());
+            Attack(target);
             Release();
         }
     }
@@ -65,7 +69,7 @@ public class Bullet : MonoBehaviour
 
     private void Attack(Enemy enemy)
     {
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(damage , isCriticalHit);
     }
 
     private bool IsInLayerMask(GameObject colliderGameObject, LayerMask layerMask)
@@ -75,6 +79,8 @@ public class Bullet : MonoBehaviour
     
     public void Reload()
     {
+        target = null;
+        
         rig.linearVelocity = Vector2.zero;
         collider.enabled = true;
     }

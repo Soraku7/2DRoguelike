@@ -13,7 +13,7 @@ public class DamageTextManager : MonoBehaviour
 
     private void Awake()
     {
-        MeleeEnemy.onDamageTaken += EnemyHitCallBack;
+        Enemy.onDamageTaken += EnemyHitCallBack;
     }
 
     private void Start()
@@ -43,17 +43,17 @@ public class DamageTextManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        MeleeEnemy.onDamageTaken -= EnemyHitCallBack;
+        Enemy.onDamageTaken -= EnemyHitCallBack;
     }
     
-    private void EnemyHitCallBack(int damage , Vector2 enemyPos)
+    private void EnemyHitCallBack(int damage , Vector2 enemyPos , bool isCriticalHit)
     {
         DamageText damageTextInstance = damageTextPool.Get();
         
         Vector3 spawnPosition = enemyPos + Vector2.up * 1.5f;
         damageTextInstance.transform.position = spawnPosition;
         
-        damageTextInstance.Animate(damage);
+        damageTextInstance.Animate(damage , isCriticalHit);
 
         float timer = 0;
 

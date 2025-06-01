@@ -18,6 +18,7 @@ public class RangeWeapon : Weapon
     private Bullet CreateFunction()
     {
         Bullet bulletInstance = Instantiate(bulletPrefab , shootingPoint.position , Quaternion.identity);
+        bulletInstance.Configure(this);
         
         return bulletInstance;
     }
@@ -81,8 +82,10 @@ public class RangeWeapon : Weapon
 
     private void Shoot()
     {
+        int damage = GetDamage(out bool isCriticalHit);
+        
         Bullet bulletInstance = bulletPool.Get();
-        bulletInstance.Shoot(damage , transform.up);
+        bulletInstance.Shoot(damage , transform.up , isCriticalHit);
     }
     
     

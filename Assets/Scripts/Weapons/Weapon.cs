@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -46,6 +47,19 @@ public abstract class Weapon : MonoBehaviour
         return closeEnemy;
     }
 
+    protected int GetDamage(out bool isCriticalHit)
+    {
+        isCriticalHit = false;
+
+        if (Random.Range(0, 101) <= 50)
+        {
+            isCriticalHit = true;
+            return damage * 2;
+        }
+        
+        return damage;
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
