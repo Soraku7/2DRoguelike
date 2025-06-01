@@ -1,10 +1,49 @@
+using System;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class RangeWeapon : Weapon
 {
     [Header("Elements")] 
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private Bullet bulletPrefab;
+
+    [Header("Pooling")]
+    private ObjectPool<Bullet> bulletPool;
+
+    private void Start()
+    {
+        bulletPool = new ObjectPool<Bullet>(CreateFunction, ActionOnGet, ActionOnRelease, ActionOnDestroy);
+    }
+    private Bullet CreateFunction()
+    {
+        Bullet bulletInstance = Instantiate(bulletPrefab , shootingPoint.position , Quaternion.identity);
+        
+        return bulletInstance;
+    }
+
+    private void ActionOnGet(Bullet bullet)
+    {
+        bullet.Reload();
+        bullet.transform.position = shootingPoint.position;
+        
+        bullet.gameObject.SetActive(true);
+    }
+    
+    private void ActionOnRelease(Bullet bullet)
+    {
+        bullet.gameObject.SetActive(false);
+    }
+
+    private void ActionOnDestroy(Bullet bullet)
+    {
+        Destroy(bullet.gameObject);
+    }
+    
+    public void ReleaseBullet(Bullet bullet)
+    {
+        bulletPool.Release(bullet);
+    }
 
     private void Update()
     {
@@ -42,7 +81,9 @@ public class RangeWeapon : Weapon
 
     private void Shoot()
     {
-        Bullet bulletInstance = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
+        Bullet bulletInstance = bulletPool.Get();
         bulletInstance.Shoot(damage , transform.up);
     }
+    
+    
 }

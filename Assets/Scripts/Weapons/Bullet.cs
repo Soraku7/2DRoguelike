@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [Header("Elements")]
     private Rigidbody2D rig;
     private Collider2D collider;
+    private RangeWeapon rangeWeapon;
     
     [Header("Settings")] 
     [SerializeField] private float moveSpeed;
@@ -28,8 +29,16 @@ public class Bullet : MonoBehaviour
         
         Destroy(gameObject);
     }
+
+    public void Configure(RangeWeapon rangeWeapon)
+    {
+        this.rangeWeapon = rangeWeapon;
+    }
+    
     public void Shoot(int damage , Vector2 direction)
     {
+        Invoke("Release", 1);
+        
         this.damage = damage;
         
         Debug.Log(direction);
@@ -41,9 +50,17 @@ public class Bullet : MonoBehaviour
     {
         if (IsInLayerMask(collider.gameObject, enemyLayer))
         {
+            CancelInvoke();
+            
             Attack(collider.GetComponent<Enemy>());
-            Destroy(gameObject);
+            Release();
         }
+    }
+
+    private void Release()
+    {
+        if (!gameObject.activeSelf) return; 
+        rangeWeapon.ReleaseBullet(this);
     }
 
     private void Attack(Enemy enemy)
@@ -54,5 +71,11 @@ public class Bullet : MonoBehaviour
     private bool IsInLayerMask(GameObject colliderGameObject, LayerMask layerMask)
     {
         return (layerMask.value & (1 << colliderGameObject.layer)) != 0;
+    }
+    
+    public void Reload()
+    {
+        rig.linearVelocity = Vector2.zero;
+        collider.enabled = true;
     }
 }
