@@ -30,6 +30,7 @@ public abstract class Enemy : MonoBehaviour
     
     [Header("Action")]
     public static Action<int , Vector2 , bool> onDamageTaken;
+    public static Action<Vector2> onPassedAway;
     
     [Header("Debugger")]
     [SerializeField] protected bool debug;
@@ -81,6 +82,8 @@ public abstract class Enemy : MonoBehaviour
         
     protected void PassAway()
     {
+        onPassedAway?.Invoke(transform.position);
+        
         passAwayParticle.transform.SetParent(null);
         passAwayParticle.Play();
         
