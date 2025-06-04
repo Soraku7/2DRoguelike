@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Candy : DroppableCurrency
+public class Cash : DroppableCurrency
 {
     [Header("Action")]
-    public static Action<Candy> onCollection;
+    public static Action<Cash> onCollection;
     
     protected override void Collected()
     {
-       onCollection?.Invoke(this);
+        onCollection?.Invoke(this);
     }
 }
