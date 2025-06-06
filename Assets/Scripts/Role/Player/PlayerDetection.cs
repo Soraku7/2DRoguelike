@@ -9,18 +9,12 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] private Collider2D collectableCollider;
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent(out Candy candy))
+        if (collider.TryGetComponent(out ICollectable collectable))
         {
             if (!collider.IsTouching(collectableCollider)) return;
             
-            candy.Collect(GetComponent<Player>());
+            collectable.Collect(GetComponent<Player>());
         }
-        
-        if (collider.TryGetComponent(out Cash cash))
-        {
-            if (!collider.IsTouching(collectableCollider)) return;
-            
-            cash.Collect(GetComponent<Player>());
-        }
+
     }
 }

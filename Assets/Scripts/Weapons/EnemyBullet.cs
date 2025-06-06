@@ -49,7 +49,6 @@ public class EnemyBullet : MonoBehaviour
     {
         this.damage = damage;
         
-        Debug.Log(direction);
         transform.right = direction;
         rig.linearVelocity = direction * moveSpeed;
     }

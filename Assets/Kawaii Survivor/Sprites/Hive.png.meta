@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 2e44c1a88b62be6499aff890c09ddf8d
+guid: bc63b1bc9098af1489d025529a6b0d9c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1399817930262890096
-    second: Plushies Icon_0
+      213: 766172107268008241
+    second: Hive_0
   - first:
-      213: 228395876093140287
-    second: Plushies Icon_1
+      213: 5772342475331282909
+    second: Hive_1
   - first:
-      213: -54062293455305288
-    second: Plushies Icon_2
+      213: -2401194480189363290
+    second: Hive_2
+  - first:
+      213: -8207991791113034695
+    second: Hive_3
+  - first:
+      213: 1954642888887649446
+    second: Hive_4
+  - first:
+      213: -1075526926592239440
+    second: Hive_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,84 +111,137 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plushies Icon_0
+      name: Hive_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 60
-        width: 245
-        height: 159
+        x: 83
+        y: 337
+        width: 26
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 099357c4209d29ce0800000000000000
-      internalID: -1399817930262890096
+      spriteID: 139a582e87df1aa00800000000000000
+      internalID: 766172107268008241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plushies Icon_1
+      name: Hive_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 44
-        width: 81
-        height: 18
+        x: 84
+        y: 368
+        width: 24
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3d12b6d6dc6b2300800000000000000
-      internalID: 228395876093140287
+      spriteID: dd7250ce5ea7b1050800000000000000
+      internalID: 5772342475331282909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plushies Icon_2
+      name: Hive_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 42
-        width: 79
-        height: 25
+        x: 0
+        y: 256
+        width: 48
+        height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b58ada61aeef3ff0800000000000000
-      internalID: -54062293455305288
+      spriteID: 6ab2fa3a75e3daed0800000000000000
+      internalID: -2401194480189363290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hive_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 143
+        width: 113
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 934a26b24fa571e80800000000000000
+      internalID: -8207991791113034695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hive_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 271
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a444eee959402b10800000000000000
+      internalID: 1954642888887649446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hive_5
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 230
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b81a1a65f5f211f0800000000000000
+      internalID: -1075526926592239440
       vertices: []
       indices: 
       edges: []
@@ -188,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8470c1f19a6b4aa44a57afc1c5c0128a
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Plushies Icon_0: -1399817930262890096
-      Plushies Icon_1: 228395876093140287
-      Plushies Icon_2: -54062293455305288
+      Hive_0: 766172107268008241
+      Hive_1: 5772342475331282909
+      Hive_2: -2401194480189363290
+      Hive_3: -8207991791113034695
+      Hive_4: 1954642888887649446
+      Hive_5: -1075526926592239440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
