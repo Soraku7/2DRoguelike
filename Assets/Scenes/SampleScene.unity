@@ -6545,6 +6545,7 @@ Transform:
   m_Children:
   - {fileID: 1376165174}
   - {fileID: 461204741}
+  - {fileID: 1275164245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &326030033
@@ -7424,6 +7425,7 @@ GameObject:
   - component: {fileID: 675005535}
   - component: {fileID: 675005540}
   - component: {fileID: 675005541}
+  - component: {fileID: 675005543}
   - component: {fileID: 675005542}
   m_Layer: 7
   m_Name: Dave
@@ -7569,6 +7571,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectableCollider: {fileID: 1712439516}
+--- !u!114 &675005543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675005534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65699771befba547866c4b48f92011e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpBar: {fileID: 1685030111}
+  levelText: {fileID: 555252992}
+  requireXp: 0
+  currentXp: 0
 --- !u!1001 &695324974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8316,6 +8334,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5302495181624136974, guid: 2bc5766660f5e7b4e88659d2ec062aa6, type: 3}
   m_PrefabInstance: {fileID: 232280196}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1275164244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275164245}
+  - component: {fileID: 1275164246}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1275164245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275164244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 317544389}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275164246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275164244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c1133ae2b583874e8772bdb1424f1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveDuration: 30
+  waves:
+  - name: Wave01
+    segments:
+    - tStartEnd: {x: 0, y: 30}
+      spawnFrequency: 1
+      prefab: {fileID: 143255679604681733, guid: 22ffeb3020a137b45879a48c9f4607ac, type: 3}
+  - name: Wave02
+    segments:
+    - tStartEnd: {x: 0, y: 10}
+      spawnFrequency: 1
+      prefab: {fileID: 214031779135724885, guid: 2bc5766660f5e7b4e88659d2ec062aa6, type: 3}
 --- !u!1 &1376165173
 GameObject:
   m_ObjectHideFlags: 0

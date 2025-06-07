@@ -67,7 +67,7 @@ MonoBehaviour:
   healthText: {fileID: 8614531165843643363}
   render: {fileID: 6212184798126463297}
   spawnIndicator: {fileID: 6974426450845784671}
-  collider: {fileID: 0}
+  collider: {fileID: 5996253849311204931}
   passAwayParticle: {fileID: 5230519754641509035}
   playerDetectRadius: 0.5
   debug: 1
