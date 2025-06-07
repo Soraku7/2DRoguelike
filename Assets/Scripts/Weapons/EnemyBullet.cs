@@ -20,8 +20,6 @@ public class EnemyBullet : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
-        
-        float timer = 0;
 
         StartCoroutine(ReleaseCoroutine());
     }
