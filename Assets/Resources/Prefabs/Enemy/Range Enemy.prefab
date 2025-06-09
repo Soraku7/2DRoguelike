@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 6940848929770403587}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1193760293492947843, guid: b719949afaad59f4c94561b822d7e200, type: 3}
   damage: 1
   attackFrequency: 1
 --- !u!1 &2191321239944995589
