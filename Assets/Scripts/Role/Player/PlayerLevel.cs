@@ -14,6 +14,7 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] private int requireXp;
     [SerializeField] private int currentXp;
     private int level;
+    private int levelsEarnedThisWave;
 
     private void Awake()
     {
@@ -56,7 +57,19 @@ public class PlayerLevel : MonoBehaviour
     private void LevelUp()
     {
         level++;
+        levelsEarnedThisWave++;
         currentXp = 0;
         UpdateRequireXp();
+    }
+
+    public bool HasLevelUp()
+    {
+        if (levelsEarnedThisWave > 0)
+        {
+            levelsEarnedThisWave--;
+            return true;
+        }
+
+        return false;
     }
 }

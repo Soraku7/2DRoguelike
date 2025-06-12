@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Manager;
 using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(WaveManagerUI))]
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour , IGameStateListener
 {
     [Header("Elements")]
     [SerializeField] private Player player;
@@ -28,10 +29,7 @@ public class WaveManager : MonoBehaviour
     
     private void Start()
     {
-        localCounters.Add(1);
 
-        StartWave(currentWaveIndex);
-        waveManagerUI.UpdateTimerText("Wave" + (currentWaveIndex + 1) + " / " + waves.Length);
     }
 
     private void Update()
@@ -43,14 +41,14 @@ public class WaveManager : MonoBehaviour
             ManageCurrentWave();
 
             string timeString = ((int)(waveDuration - timer)).ToString();
-            waveManagerUI.UpdateWaveText(timeString);
+            waveManagerUI.UpdateTimerText(timeString);
         }
         else StartWaveTransition();
     }
 
     private void StartWaveTransition()
     {
-        waveManagerUI.UpdateTimerText("Wave" + (currentWaveIndex + 1) + " / " + waves.Length);
+        waveManagerUI.UpdateWaveText("Wave" + (currentWaveIndex + 1) + " / " + waves.Length);
         
         isTimeOn = false;
         
@@ -59,10 +57,12 @@ public class WaveManager : MonoBehaviour
         if(currentWaveIndex >= waves.Length)
         {
             waveManagerUI.UpdateWaveText("Game Over");
-            
-            return;
+            waveManagerUI.UpdateTimerText("");
         }
-        StartWave(currentWaveIndex);
+        else
+        {
+            GameManager.instance.WaveCompleteCallback();
+        }
     }
 
     private void ManageCurrentWave()
@@ -112,7 +112,7 @@ public class WaveManager : MonoBehaviour
     private void StartWave(int waveIndex)
     {
         Debug.Log("Start Wave" + currentWaveIndex);
-        
+        waveManagerUI.UpdateWaveText("Wave" + (currentWaveIndex + 1) + " / " + waves.Length);
         timer = 0;
         isTimeOn = true;
         
@@ -123,6 +123,22 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    private void StartNextWave()
+    {
+        StartWave(currentWaveIndex);
+    }
+
+    public void GameStateChangedCallback(GameState gameState)
+    {
+        Debug.Log("GameState Changed" + gameState);
+
+        switch (gameState)
+        {
+            case GameState.GAME:
+                StartNextWave();
+                break;
+        }
+    }
 }
 
 
