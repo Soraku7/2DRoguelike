@@ -16,6 +16,8 @@ public class PlayerLevel : MonoBehaviour
     private int level;
     private int levelsEarnedThisWave;
 
+    [Header("Debug")]
+    [SerializeField] private bool debugMode;
     private void Awake()
     {
         Candy.onCollection += CandyCollectedCallback;
@@ -64,6 +66,9 @@ public class PlayerLevel : MonoBehaviour
 
     public bool HasLevelUp()
     {
+        if(debugMode)
+            return true;
+        
         if (levelsEarnedThisWave > 0)
         {
             levelsEarnedThisWave--;

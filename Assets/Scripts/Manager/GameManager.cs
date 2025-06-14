@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace Manager
@@ -30,6 +32,11 @@ namespace Manager
         {
             SetGameState(GameState.SHOP);
         }
+        
+        public void StartWeaponSelection()
+        {
+            SetGameState(GameState.WEAPONSELECTION);
+        }
 
         public void SetGameState(GameState gameState)
         {
@@ -50,8 +57,16 @@ namespace Manager
             }
             else
             {
-                 SetGameState(GameState.SHOP);
+                SetGameState(GameState.SHOP);
             }
+        }
+
+        public void ManageGameover()
+        {
+            
+            float timer = 0;
+
+            SceneManager.LoadScene(0);
         }
     }
 }

@@ -27,10 +27,6 @@ public class WaveManager : MonoBehaviour , IGameStateListener
         waveManagerUI = GetComponent<WaveManagerUI>();
     }
     
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -58,6 +54,7 @@ public class WaveManager : MonoBehaviour , IGameStateListener
         {
             waveManagerUI.UpdateWaveText("Game Over");
             waveManagerUI.UpdateTimerText("");
+            GameManager.instance.SetGameState(GameState.STAGECOMPLETE);
         }
         else
         {
@@ -136,6 +133,11 @@ public class WaveManager : MonoBehaviour , IGameStateListener
         {
             case GameState.GAME:
                 StartNextWave();
+                break;
+            
+            case GameState.GAMEOVER:
+                isTimeOn = true;
+                DefeatAllEnemies();
                 break;
         }
     }
