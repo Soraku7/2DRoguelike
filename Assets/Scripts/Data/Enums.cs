@@ -47,6 +47,6 @@ public static class Enums
             formated += unformatedString[i];
         }
         
-        return stat.ToString().Replace("Precent", "%").Replace("RecoverySpeed", "Recovery Speed");
+        return stat.ToString().Replace("RecoverySpeed", "Recovery Speed");
     }
 }
