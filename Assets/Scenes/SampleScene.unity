@@ -8698,7 +8698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 551388260}
-  moveSpeed: 5
+  baseMoveSpeed: 3
 --- !u!50 &675005536
 Rigidbody2D:
   serializedVersion: 5
@@ -10955,7 +10955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 675005540}
-  waveDuration: 1
+  waveDuration: 20
   waves:
   - name: Wave01
     segments:

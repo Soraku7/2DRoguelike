@@ -55,7 +55,7 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
         float value;
         
         value = Random.Range(1, 10);
-        buttonString = "+" + value + "%";
+        
         switch (stat)
         {
             case Stat.Attack:
@@ -109,7 +109,7 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
                 value = Random.Range(1, 10);
                 break;
         }
-        
+        buttonString = "+" + value + "%";
         return () => playerStatsManager.AddPlayerStat(stat, value);
     }
 }

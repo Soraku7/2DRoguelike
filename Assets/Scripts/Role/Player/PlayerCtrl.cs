@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerCtrl : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour , IPlayerStatsDepdendency
 {
 
     [Header("Elements")]
@@ -11,7 +11,8 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] private MobileJoystick joystick;
 
     [Header("Settings")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float baseMoveSpeed;
+    private float moveSpeed;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -23,4 +24,9 @@ public class PlayerCtrl : MonoBehaviour
 
     }
 
+    public void UpdateStats(PlayerStatsManager playerStatsManager)
+    {
+        float moveSpeedPercent = playerStatsManager.GetStatValue(Stat.MoveSpeed) / 100f;
+        moveSpeed = baseMoveSpeed * (1 + moveSpeedPercent);
+    }
 }

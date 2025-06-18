@@ -14,6 +14,7 @@ public class DamageTextManager : MonoBehaviour
     private void Awake()
     {
         Enemy.onDamageTaken += EnemyHitCallBack;
+        PlayerHealth.onAttackedDodged += AttackDodgedCallBack;
     }
 
     private void Start()
@@ -53,7 +54,7 @@ public class DamageTextManager : MonoBehaviour
         Vector3 spawnPosition = enemyPos + Vector2.up * 1.5f;
         damageTextInstance.transform.position = spawnPosition;
         
-        damageTextInstance.Animate(damage , isCriticalHit);
+        damageTextInstance.Animate(damage.ToString() , isCriticalHit);
 
         float timer = 0;
 
@@ -62,5 +63,22 @@ public class DamageTextManager : MonoBehaviour
                 damageTextPool.Release(damageTextInstance);
             });    
 
+    }
+    
+    private void AttackDodgedCallBack(Vector2 playerPos)
+    {
+        DamageText damageTextInstance = damageTextPool.Get();
+        
+        Vector3 spawnPosition = playerPos + Vector2.up * 1.5f;
+        damageTextInstance.transform.position = spawnPosition;
+        
+        damageTextInstance.Animate("Dodged" , false);
+
+        float timer = 0;
+
+        DOTween.To(() => timer, x => timer = x, 1, 1f).OnStepComplete(() =>
+        {
+            damageTextPool.Release(damageTextInstance);
+        }); 
     }
 }

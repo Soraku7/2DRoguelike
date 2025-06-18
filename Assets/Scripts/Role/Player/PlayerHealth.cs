@@ -3,23 +3,61 @@ using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour , IPlayerStatsDepdendency
 {
     [Header("Settings")]
     [SerializeField] private int baseMaxHealth = 10;
-    private int maxHealth;
-    private int health;
+    private float maxHealth;
+    private float health;
+    private float armor;
+    private float lifeSteal;
+    private float dodge;
     
     [Header("Element")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthTex;
 
+    [Header("Actions")]
+    public static Action<Vector2> onAttackedDodged;
+
+    private void Awake()
+    {
+        Enemy.onDamageTaken += EnemyTookDamageCallBack;
+    }
+
+    private void OnDestroy()
+    {
+        Enemy.onDamageTaken -= EnemyTookDamageCallBack;
+    }
+
+    private void EnemyTookDamageCallBack(int damage, Vector2 enemyPos, bool isCriticalHit)
+    {
+        if (health >= maxHealth) return;
+        
+        float lifeStealValue = damage * lifeSteal;
+        float healthToAdd = Math.Min(lifeStealValue , maxHealth - health);
+
+		health += healthToAdd;
+        UpdateUI();
+    }
+
     public void TakeDamage(int damage)
     {
-        int realDamage = Mathf.Min(health, damage);
+
+        if (ShouldDodge())
+        {
+            onAttackedDodged?.Invoke(transform.position);
+            return;
+        }
+        
+        float realDamage = damage * Mathf.Clamp(1 - (armor / 1000f) , 0 , 1000);
+        realDamage = Mathf.Min(health, damage);
         
         health -= realDamage;
+        
+        Debug.Log("realtDamage:" + realDamage);
 
         UpdateUI();
  
@@ -29,11 +67,16 @@ public class PlayerHealth : MonoBehaviour , IPlayerStatsDepdendency
         }
     }
 
+    private bool ShouldDodge()
+    {
+        return Random.Range(0, 100) < dodge;
+    }
+
     private void UpdateUI()
     {
-        float healthBarValue = (float)health / maxHealth;
+        float healthBarValue = health / maxHealth;
         
-        healthTex.text = health + " / " + maxHealth;
+        healthTex.text = (int)health + " / " + maxHealth;
         healthSlider.value = healthBarValue;
     }
     
@@ -51,5 +94,9 @@ public class PlayerHealth : MonoBehaviour , IPlayerStatsDepdendency
         
         health = maxHealth;
         UpdateUI();
+        
+        armor = playerStatsManager.GetStatValue(Stat.Armor);
+        lifeSteal = playerStatsManager.GetStatValue(Stat.LifeSteal) / 100;
+        dodge = playerStatsManager.GetStatValue(Stat.Dodge);
     }
 }
