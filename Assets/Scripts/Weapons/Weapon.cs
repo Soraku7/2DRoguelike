@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
 {
+    [field: SerializeField] public WeaponDataSO WeaponData { get; private set; }
+    
     [Header("Settings")] 
-    [SerializeField] private float range;
+    [SerializeField] protected float range;
 
     [SerializeField] protected LayerMask enemyMask;
 
@@ -20,6 +22,13 @@ public abstract class Weapon : MonoBehaviour
     
     [Header("Animation")] 
     [SerializeField] protected float aimLerp;
+
+    [Header("Level")]
+    [field: SerializeField] public int Level { get; private set; }
+    
+    [Header("Critical")]
+    protected int criticalChance;
+    protected float criticalPercent;
     
 
     protected Enemy GetClosestEnemy()
@@ -51,10 +60,10 @@ public abstract class Weapon : MonoBehaviour
     {
         isCriticalHit = false;
 
-        if (Random.Range(0, 101) <= 50)
+        if (Random.Range(0, 101) <= criticalChance)
         {
             isCriticalHit = true;
-            return damage * 2;
+            return Mathf.RoundToInt(damage * criticalPercent);
         }
         
         return damage;
@@ -65,5 +74,21 @@ public abstract class Weapon : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, range);
 
+    }
+
+    public abstract void UpdateStats(PlayerStatsManager playerStatsManager);
+
+    protected void ConfigureStats()
+    {
+        float multiplier = 1 + Level / 3f;
+        
+        damage = Mathf.RoundToInt(WeaponData.GetStatValue(Stat.Attack) * multiplier);
+        attackDelay = 1f / (WeaponData.GetStatValue(Stat.AttackSpeed) * multiplier);
+
+        criticalChance = Mathf.RoundToInt(WeaponData.GetStatValue(Stat.CriticalChance) * multiplier);
+        criticalPercent = WeaponData.GetStatValue(Stat.CriticalPrecent) * multiplier;
+
+        if(WeaponData.Prefab.GetType() == typeof(RangeWeapon))
+            range = WeaponData.GetStatValue(Stat.Range) * multiplier;
     }
 }

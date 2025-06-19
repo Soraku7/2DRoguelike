@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Character Data", menuName = "Scriptable Objects/new CharacterData")]
-public class CharacterDataOS : ScriptableObject
+public class CharacterDataSO : ScriptableObject
 {
     [field:SerializeField] public string Name { get; private set; }
     [field:SerializeField] public Sprite Sprite { get; private set; }

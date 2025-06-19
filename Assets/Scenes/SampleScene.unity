@@ -13615,6 +13615,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6384730040761894791, guid: 9cde9b7c1c1880740b1af848cc93b68b, type: 3}
+      propertyPath: baseDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384730040761894791, guid: 9cde9b7c1c1880740b1af848cc93b68b, type: 3}
+      propertyPath: <Level>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384730040761894791, guid: 9cde9b7c1c1880740b1af848cc93b68b, type: 3}
+      propertyPath: <WeaponData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f182dcf2d9dc9fd449519371d9c1862b, type: 2}
     - target: {fileID: 7266500653362918784, guid: 9cde9b7c1c1880740b1af848cc93b68b, type: 3}
       propertyPath: m_Name
       value: Cotan Candy Gun
@@ -13798,6 +13810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeBoiink
       objectReference: {fileID: 0}
+    - target: {fileID: 5681331378581747888, guid: b29c0f1be0a9e3b41864276dcb03a565, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7049552867941974816, guid: b29c0f1be0a9e3b41864276dcb03a565, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.816
@@ -13837,6 +13853,10 @@ PrefabInstance:
     - target: {fileID: 7049552867941974816, guid: b29c0f1be0a9e3b41864276dcb03a565, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599798965339561936, guid: b29c0f1be0a9e3b41864276dcb03a565, type: 3}
+      propertyPath: <WeaponData>k__BackingField
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

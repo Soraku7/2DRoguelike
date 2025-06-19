@@ -7,7 +7,7 @@ public class PlayerStatsManager : MonoBehaviour
 {
     
     [Header("Data")]
-    [SerializeField] private CharacterDataOS playerData;
+    [SerializeField] private CharacterDataSO playerData;
     
     [Header("Settings")]
     // private List<StatData> addends = new List<StatData>();

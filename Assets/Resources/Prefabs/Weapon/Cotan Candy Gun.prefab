@@ -219,10 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a797dce271f01c14ca8d8de4b02bfd02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <WeaponData>k__BackingField: {fileID: 0}
   range: 6
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+  baseDamage: 0
   damage: 10
   attackDelay: 1
   animator: {fileID: 1215831303940136079}
