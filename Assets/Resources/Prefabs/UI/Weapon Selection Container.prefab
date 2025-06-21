@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -272,6 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a7c55da63fc294680cc098f9df17bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 4397227573209450710}
+  nameText: {fileID: 6688468059833131410}
+  levelDependentImages:
+  - {fileID: 4392441336090540442}
+  <Button>k__BackingField: {fileID: 2061883359389545007}
 --- !u!1 &8193746028940213770
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +369,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4068165971969562723}
   - component: {fileID: 8599798965339561936}
   m_Layer: 0
-  m_Name: BeBoiink
+  m_Name: DeBoiink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5681331378581747888}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.816, y: 1.069, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -234,16 +234,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9084c7eb49da7ce468ef5b6c8f77c40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WeaponData>k__BackingField: {fileID: 0}
+  <WeaponData>k__BackingField: {fileID: 11400000, guid: 2207eb73257bbbb428803752cd4690f8, type: 2}
   range: 3
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  baseDamage: 0
   damage: 5
   attackDelay: 1
   animator: {fileID: 4068165971969562723}
   aimLerp: 12
+  <Level>k__BackingField: 0
   hitDetectTransform: {fileID: 290246881880834441}
   hitDetectRadius: 0.43
   hitCollider: {fileID: 59795904107089705}

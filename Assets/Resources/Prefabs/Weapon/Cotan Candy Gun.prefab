@@ -224,10 +224,10 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  baseDamage: 0
   damage: 10
   attackDelay: 1
   animator: {fileID: 1215831303940136079}
   aimLerp: 12
+  <Level>k__BackingField: 0
   shootingPoint: {fileID: 3284848438790181163}
   bulletPrefab: {fileID: 7341400433168256401, guid: dafadc005883f3b409fd8b41db957dbb, type: 3}
