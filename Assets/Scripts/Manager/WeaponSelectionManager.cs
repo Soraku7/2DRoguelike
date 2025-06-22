@@ -4,15 +4,29 @@ public class WeaponSelectionManager : MonoBehaviour , IGameStateListener
 {
     [Header("Elements")] 
     [SerializeField] private Transform containersParent;
-    [SerializeField] private WeaponSelectionContainer weaponContainerPrefab; 
+    [SerializeField] private WeaponSelectionContainer weaponContainerPrefab;
+    [SerializeField] private PlayerWeapons playerWeapons;
     
     [Header("Data")]
     [SerializeField] private WeaponDataSO[] starterWeapons;
+    private WeaponDataSO selectedWeapon; 
+    private int initialWeaponLevel;
     
     public void GameStateChangedCallback(GameState gameState)
     {
         switch (gameState)
         {
+            case GameState.GAME:
+                if (selectedWeapon == null)
+                {
+                    Debug.LogError("No weapon selected. Please select a weapon before starting the game.");
+                    return;
+                }
+                
+                playerWeapons.AddWeapon(selectedWeapon , initialWeaponLevel);
+                selectedWeapon = null;
+                break;
+            
             case GameState.WEAPONSELECTION:
                 Configure();
                 break;
@@ -36,6 +50,7 @@ public class WeaponSelectionManager : MonoBehaviour , IGameStateListener
         WeaponDataSO weaponData = starterWeapons[Random.Range(0 , starterWeapons.Length)];
         
         int level = Random.Range(0 , 4);
+        initialWeaponLevel = level;
         
         containerInstance.Configure(weaponData.Sprite, weaponData.Name , level);
         
@@ -45,6 +60,8 @@ public class WeaponSelectionManager : MonoBehaviour , IGameStateListener
     
     private void WeaponSelectedCallback(WeaponSelectionContainer containerInstance , WeaponDataSO weaponData)
     {
+        selectedWeapon = weaponData;
+        
         foreach(WeaponSelectionContainer container in containersParent.GetComponentsInChildren<WeaponSelectionContainer>())
         {
            if(container == containerInstance) container.Select();
