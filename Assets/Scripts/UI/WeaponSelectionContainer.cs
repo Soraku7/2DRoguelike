@@ -21,24 +21,7 @@ public class WeaponSelectionContainer : MonoBehaviour
         nameText.text = name;
 
         Color imageColor;
-        switch (level)
-        {
-            case 0:
-                imageColor = Color.white;
-                break;
-            
-            case 1:
-                imageColor = Color.red;
-                break;
-            
-            case 2:
-                imageColor = Color.blue;
-                break;
-            
-            default:
-                imageColor = Color.green;
-                break;
-        }
+        imageColor = ColorHolder.GetColor(level);
 
         foreach (var image in levelDependentImages)
         {
