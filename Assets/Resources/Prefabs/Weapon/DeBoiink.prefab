@@ -243,7 +243,6 @@ MonoBehaviour:
   attackDelay: 1
   animator: {fileID: 4068165971969562723}
   aimLerp: 12
-  <Level>k__BackingField: 0
   hitDetectTransform: {fileID: 290246881880834441}
   hitDetectRadius: 0.43
   hitCollider: {fileID: 59795904107089705}

@@ -24,7 +24,7 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
     [SerializeField] protected float aimLerp;
 
     [Header("Level")]
-    [field: SerializeField] public int Level { get; private set; }
+    public int Level { get; private set; }
     
     [Header("Critical")]
     protected int criticalChance;
@@ -90,5 +90,11 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
 
         if(WeaponData.Prefab.GetType() == typeof(RangeWeapon))
             range = WeaponData.GetStatValue(Stat.Range) * multiplier;
+    }
+
+    public void UpgrateTo(int targetLevel)
+    {
+        Level = targetLevel;
+        ConfigureStats();
     }
 }
