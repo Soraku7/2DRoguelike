@@ -10,12 +10,18 @@ public class WeaponSelectionContainer : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI nameText;
     
+    [Header("Stats")]
+    [SerializeField] private Transform statsContainerParent;
+    [SerializeField] private StatContainer statContainerPrefab;
+    [SerializeField] private Sprite statIcon;
+     
+    [field: SerializeField] public Button Button { get ; private set;}
+    
     [Header("Color")]
     [SerializeField] private Image[] levelDependentImages;
-    
-    [field: SerializeField] public Button Button { get ; private set;}
 
-    public void Configure(Sprite sprite , string name , int level)
+
+    public void Configure(Sprite sprite , string name , int level , WeaponDataSO weaponData)
     {
         icon.sprite = sprite;
         nameText.text = name;
@@ -26,6 +32,17 @@ public class WeaponSelectionContainer : MonoBehaviour
         foreach (var image in levelDependentImages)
         {
             image.color = imageColor;
+        }
+
+        ConfigureStatContainers(weaponData);
+    }
+
+    private void ConfigureStatContainers(WeaponDataSO weaponData)
+    {
+        foreach (var kvp in weaponData.BaseStats)
+        {
+            StatContainer containerInstance = Instantiate(statContainerPrefab, statsContainerParent);
+            containerInstance.Configure(statIcon , Enums.FormatStat(kvp.Key) , kvp.Value);
         }
     }
 
