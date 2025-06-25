@@ -42,7 +42,9 @@ public class WeaponSelectionContainer : MonoBehaviour
         foreach (var kvp in weaponData.BaseStats)
         {
             StatContainer containerInstance = Instantiate(statContainerPrefab, statsContainerParent);
-            containerInstance.Configure(statIcon , Enums.FormatStat(kvp.Key) , kvp.Value);
+            containerInstance.Configure(ResourcesManager.GetStatIcon(kvp.Key),
+                Enums.FormatStat(kvp.Key),
+                kvp.Value);
         }
     }
 
