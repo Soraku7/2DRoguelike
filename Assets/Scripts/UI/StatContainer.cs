@@ -15,4 +15,15 @@ public class StatContainer : MonoBehaviour
         statText.text = statName;
         statValueText.text = statValue.ToString("F1"); // Format to one decimal place
     }
+
+    public float GetFontSize()
+    {
+        return statText.fontSize;
+    }
+
+    public void SetFontSize(float minFontSize)
+    {
+        statText.fontSizeMax = minFontSize;
+        statValueText.fontSizeMax = minFontSize;
+    }
 }
