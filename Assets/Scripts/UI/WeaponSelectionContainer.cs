@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -34,12 +35,13 @@ public class WeaponSelectionContainer : MonoBehaviour
             image.color = imageColor;
         }
 
-        ConfigureStatContainers(weaponData);
+        Dictionary<Stat, float> calculateStat = WeaponStatsCalculate.GetStats(weaponData, level);
+        ConfigureStatContainers(calculateStat);
     }
 
-    private void ConfigureStatContainers(WeaponDataSO weaponData)
+    private void ConfigureStatContainers(Dictionary<Stat, float> calculateStat)
     {
-        StatContainerManager.GenerateStatContainer(weaponData.BaseStats , statsContainerParent);
+        StatContainerManager.GenerateStatContainer(calculateStat , statsContainerParent);
     }
 
     public void Deselect()
