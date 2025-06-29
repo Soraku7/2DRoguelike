@@ -60,11 +60,11 @@ public class PlayerStatsManager : MonoBehaviour
 
     public void AddObejct(Dictionary<Stat , float> objectData)
     {
-        var keys = objectAddends.Keys.ToList();
+        var keys = objectData.Keys.ToList();
         for (int i = 0; i < keys.Count; i++)
         {
             var key = keys[i];
-            objectAddends[key] += objectAddends[key];
+            objectAddends[key] += objectData[key];
         }
         
         UpdatePlayerStats();
