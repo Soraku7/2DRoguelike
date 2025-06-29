@@ -88,7 +88,7 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
         criticalChance = Mathf.RoundToInt(calculatedStats[Stat.CriticalChance]);
         criticalPercent = calculatedStats[Stat.CriticalPrecent];
         
-            range = calculatedStats[Stat.Range];
+        range = calculatedStats[Stat.Range];
     }
 
     public void UpgrateTo(int targetLevel)

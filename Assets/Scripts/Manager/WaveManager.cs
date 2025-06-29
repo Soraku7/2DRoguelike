@@ -59,6 +59,7 @@ public class WaveManager : MonoBehaviour , IGameStateListener
         else
         {
             GameManager.instance.WaveCompleteCallback();
+            DefeatAllEnemies();
         }
     }
 
@@ -91,7 +92,8 @@ public class WaveManager : MonoBehaviour , IGameStateListener
     [NaughtyAttributes.Button]
     private void DefeatAllEnemies()
     {
-        transform.Clear();
+        foreach(var enemy in transform.GetComponentsInChildren<Enemy>())
+            enemy.PassAway();
     }
 
     private Vector2 GetSpawnPosition()

@@ -19,22 +19,25 @@ public class WeaponSelectionContainer : MonoBehaviour
     
     [Header("Color")]
     [SerializeField] private Image[] levelDependentImages;
+    [SerializeField] private Image outline;
 
 
     public void Configure(Sprite sprite , string name , int level , WeaponDataSO weaponData)
     {
         icon.sprite = sprite;
-        nameText.text = name;
+        nameText.text = name + " (Level " + (level + 1) + ")";
 
         Color imageColor;
         imageColor = ColorHolder.GetColor(level);
         nameText.color = imageColor;
+        
+        outline.color = ColorHolder.GetOutlineColor(level);
 
         foreach (var image in levelDependentImages)
         {
             image.color = imageColor;
         }
-
+        
         Dictionary<Stat, float> calculateStat = WeaponStatsCalculate.GetStats(weaponData, level);
         ConfigureStatContainers(calculateStat);
     }
