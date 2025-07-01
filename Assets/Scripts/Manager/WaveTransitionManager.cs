@@ -100,11 +100,13 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
             int randomStatIndex = Random.Range(1, Enum.GetValues(typeof(Stat)).Length);
             Stat stat = (Stat)Enum.GetValues(typeof(Stat)).GetValue(randomStatIndex);
             
+            Sprite upgrateIcon = ResourcesManager.GetStatIcon(stat);
+            
             randomStatString = Enums.FormatStat(stat);
             
-            string buttonString;
+            string buttonString; 
             Action action = GetActionToPerform(stat , out buttonString);
-            upgradeContainers[i].Configure(null , randomStatString , buttonString);
+            upgradeContainers[i].Configure(upgrateIcon , randomStatString , buttonString);
             
             upgradeContainers[i].Button.onClick.RemoveAllListeners();
             
@@ -130,14 +132,17 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
         {
             case Stat.Attack:
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.AttackSpeed:                
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%"; 
                 break;
             
             case Stat.CriticalChance:               
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.CriticalPrecent:                 
@@ -147,10 +152,12 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
             
             case Stat.MoveSpeed:                 
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.MaxHealth:                
                 value = Random.Range(1, 5);
+                buttonString = "+" + value;
                 buttonString = "+" + value;
                 break;
             
@@ -161,25 +168,30 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
             
             case Stat.HealthRecoverySpeed:                
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.Armor:                 
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.Luck:                 
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.Dodge:                
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
             
             case Stat.LifeSteal:                
                 value = Random.Range(1, 10);
+                buttonString = "+" + value + "%";
                 break;
         }
-        buttonString = "+" + value + "%";
+        buttonString = Enums.FormatStat(stat) + " " + buttonString;
         return () => playerStatsManager.AddPlayerStat(stat, value);
     }
     
