@@ -8,6 +8,11 @@ using Random = UnityEngine.Random;
 
 public class WaveTransitionManager : MonoBehaviour , IGameStateListener
 {
+    public static WaveTransitionManager instance;
+    
+    [Header("Player")]
+    [SerializeField] private PlayerObjects playerObjects;
+    
     [Header("Elements")]
     [SerializeField] private PlayerStatsManager playerStatsManager;
     [SerializeField] private UpgrateContainer[] upgradeContainers;
@@ -22,6 +27,9 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
 
     private void Awake()
     {
+        if(instance == null) instance = this;
+        else Destroy(gameObject);
+        
         Chest.onCollect += ChestCollectedCallback;
     }
 
@@ -43,6 +51,8 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
 
     private void TryOpenChest()
     {
+        chestContainerParent.Clear();
+        
         if (chestCollected > 0)
         {
             ShowObjects();
@@ -61,7 +71,23 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
 
         ChestObjectContainer constainerInstance = Instantiate(chestObjectContainerPrefab, chestContainerParent);
         constainerInstance.Configure(randomObject);
+        
+        constainerInstance.TakeButton.onClick.AddListener(() => TakeButtonCallback(randomObject));
+        constainerInstance.RecycleButton.onClick.AddListener(() => RecycleButtonCallback(randomObject));
     }
+    
+    private void TakeButtonCallback(ObjectDataSO objectData)
+    {
+        playerObjects.AddObject(objectData);
+        TryOpenChest();
+    }
+
+    private void RecycleButtonCallback(ObjectDataSO objectData)
+    {
+        CurrencyManager.instance.AddCurrency(objectData.RecyclePrice);
+        TryOpenChest();
+    }
+
     
     private void ConfigureUpgradeContainers()
     {
@@ -161,6 +187,10 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
     private void ChestCollectedCallback()
     {
         chestCollected++;
-        
+    }
+
+    public bool HasCollectedChest()
+    {
+        return chestCollected > 0;
     }
 }

@@ -7695,7 +7695,7 @@ MonoBehaviour:
   cashPrefab: {fileID: 7232597944972536823, guid: fe6228be3747f9749aae7846576e0456, type: 3}
   chestPrefab: {fileID: 1158298730862860556, guid: eb0258edf7248c843a70189085794f65, type: 3}
   cashDropChance: 50
-  chestDropDelay: 10
+  chestDropDelay: 94.2
 --- !u!1001 &469492665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14341,6 +14341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae281a03af7bd6b428ace8c38c27b938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObjects: {fileID: 675005545}
   playerStatsManager: {fileID: 675005546}
   upgradeContainers:
   - {fileID: 660319311}

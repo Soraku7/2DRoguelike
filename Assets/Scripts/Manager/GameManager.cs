@@ -51,7 +51,7 @@ namespace Manager
         
         public void WaveCompleteCallback()
         {
-            if (Player.instance.HasLevelUp())
+            if (Player.instance.HasLevelUp() || WaveTransitionManager.instance.HasCollectedChest())
             {
                 SetGameState(GameState.WAVETRANSITION);
             }
