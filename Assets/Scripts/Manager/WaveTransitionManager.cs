@@ -191,7 +191,7 @@ public class WaveTransitionManager : MonoBehaviour , IGameStateListener
                 buttonString = "+" + value + "%";
                 break;
         }
-        buttonString = Enums.FormatStat(stat) + " " + buttonString;
+        // buttonString = Enums.FormatStat(stat) + " " + buttonString;
         return () => playerStatsManager.AddPlayerStat(stat, value);
     }
     
