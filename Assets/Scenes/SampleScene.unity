@@ -10258,7 +10258,7 @@ MonoBehaviour:
   levelText: {fileID: 555252992}
   requireXp: 0
   currentXp: 0
-  debugMode: 1
+  debugMode: 0
 --- !u!114 &675005544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12752,7 +12752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 675005540}
-  waveDuration: 1
+  waveDuration: 20
   waves:
   - name: Wave01
     segments:
@@ -16361,6 +16361,7 @@ GameObject:
   - component: {fileID: 1814210645}
   - component: {fileID: 1814210644}
   - component: {fileID: 1814210643}
+  - component: {fileID: 1814210646}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -16506,6 +16507,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814210641}
   m_CullTransparentMesh: 1
+--- !u!114 &1814210646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814210641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00b7e55e0e4542409eb3876f5907a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1823263766
 PrefabInstance:
   m_ObjectHideFlags: 0

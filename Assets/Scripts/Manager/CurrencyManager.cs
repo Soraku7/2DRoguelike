@@ -11,10 +11,26 @@ public class CurrencyManager : MonoBehaviour
         if(instance == null) instance = this;
         else Destroy(gameObject);
     }
+    
+    private void Start()
+    {
+        UpdateTexts();
+    }
 
     public void AddCurrency(int amount)
     {
         Currency += amount;
         Debug.Log($"Currency added: {amount}. Total currency: {Currency}");
+        UpdateTexts();
+    }
+
+    private void UpdateTexts()
+    {
+        CurrencyText[] texts = FindObjectsByType<CurrencyText>(FindObjectsInactive.Include , FindObjectsSortMode.None);
+        
+        foreach (CurrencyText text in texts)
+        {
+            text.UpdateText(Currency.ToString());
+        }
     }
 }
