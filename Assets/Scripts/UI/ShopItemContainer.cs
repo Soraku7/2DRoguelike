@@ -11,7 +11,7 @@ public class ShopItemContainer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI priceText;
     
-    [Header("Stats")]
+    [Header("Stats")] 
     [SerializeField] private Transform statsContainerParent;
     [SerializeField] private StatContainer statContainerPrefab;
      
@@ -21,7 +21,11 @@ public class ShopItemContainer : MonoBehaviour
     [SerializeField] private Image[] levelDependentImages;
     [SerializeField] private Image outline;
 
-
+    [Header("Lock Elements")] 
+    [SerializeField] private Image lockImage;
+    [SerializeField] private Sprite lockedSprite , unlockedSprite;
+    public bool IsLocked { get; private set; } = false;
+    
     public void Configure(ObjectDataSO objectData)
     {
         icon.sprite = objectData.Icon;
@@ -43,7 +47,8 @@ public class ShopItemContainer : MonoBehaviour
     }
     
     public void Configure(WeaponDataSO weaponData , int level)
-    {
+    { 
+        
         icon.sprite = weaponData.Sprite;
         nameText.text = weaponData.Name + " (Level " + (level + 1) + ")";
         priceText.text = WeaponStatsCalculate.GetPruchasePrice(weaponData, level).ToString();
@@ -65,5 +70,16 @@ public class ShopItemContainer : MonoBehaviour
     private void ConfigureStatContainers(Dictionary<Stat, float> stats)
     {
         StatContainerManager.GenerateStatContainer(stats , statsContainerParent);
+    }
+
+    public void LockButtonCallback()
+    {
+        IsLocked = !IsLocked;
+        UpdateLockVisuals();
+    }
+
+    private void UpdateLockVisuals()
+    {
+        lockImage.sprite = IsLocked ? lockedSprite : unlockedSprite;
     }
 }

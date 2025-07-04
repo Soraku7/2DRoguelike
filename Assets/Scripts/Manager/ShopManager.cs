@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour , IGameStateListener
@@ -15,9 +16,24 @@ public class ShopManager : MonoBehaviour , IGameStateListener
 
     private void Configure()
     {
-        containersParent.Clear();
+        List<GameObject> toDestroy = new List<GameObject>();
+        
+        for(int i = 0 ; i < containersParent.childCount ; i++)
+        {
+            ShopItemContainer shopItemContainer = containersParent.GetChild(i).GetComponent<ShopItemContainer>();
+            
+            if(!shopItemContainer.IsLocked) toDestroy.Add(shopItemContainer.gameObject);
+        }
+        
+        while(toDestroy.Count > 0)
+        {
+            Transform t = toDestroy[0].transform;
+            t.SetParent(null);
+            Destroy(t.gameObject);
+            toDestroy.RemoveAt(0);
+        }
 
-        int containersToAdd = 6; 
+        int containersToAdd = 6 - containersParent.childCount; 
         int weaponContainerCount = Random.Range(Mathf.Min(2 , containersToAdd) , containersToAdd);
         int objectContainerCount = containersToAdd - weaponContainerCount;
 
@@ -36,5 +52,10 @@ public class ShopManager : MonoBehaviour , IGameStateListener
             ObjectDataSO randomObject = ResourcesManager.GetRandomObject();
             objectContainerInstance.Configure(randomObject);
         }
+    }
+
+    public void Reroll()
+    {
+        Configure();
     }
 }
