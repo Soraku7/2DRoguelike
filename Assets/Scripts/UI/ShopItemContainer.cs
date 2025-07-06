@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,12 +26,22 @@ public class ShopItemContainer : MonoBehaviour
     [SerializeField] private Image lockImage;
     [SerializeField] private Sprite lockedSprite , unlockedSprite;
     public bool IsLocked { get; private set; } = false;
+
+    [Header("Purchasing")] 
+    public WeaponDataSO WeaponData { get; private set; }
+    public ObjectDataSO ObjectData { get; private set; }
+    private int weaponLevel;
+    
+    [Header("Actions")]
+    public static Action<ShopItemContainer , int> onPurchased;
     
     public void Configure(ObjectDataSO objectData)
     {
         icon.sprite = objectData.Icon;
         nameText.text = objectData.Name;
         priceText.text = objectData.Price.ToString();
+        
+        ObjectData = objectData;
 
         Color imageColor;
         imageColor = ColorHolder.GetColor(objectData.Rarity);
@@ -44,14 +55,22 @@ public class ShopItemContainer : MonoBehaviour
         }
         
         ConfigureStatContainers(objectData.BaseStats);
+
+        PurchaseButton.onClick.AddListener(Purchase);
+        PurchaseButton.interactable = CurrencyManager.instance.HasEnoughCurrency(objectData.Price);
     }
     
     public void Configure(WeaponDataSO weaponData , int level)
     { 
+        weaponLevel = level;
         
         icon.sprite = weaponData.Sprite;
         nameText.text = weaponData.Name + " (Level " + (level + 1) + ")";
         priceText.text = WeaponStatsCalculate.GetPruchasePrice(weaponData, level).ToString();
+
+        WeaponData = weaponData;
+
+        int weaponPrice = WeaponStatsCalculate.GetPruchasePrice(weaponData, level);
 
         Color imageColor;
         imageColor = ColorHolder.GetColor(level);
@@ -65,6 +84,14 @@ public class ShopItemContainer : MonoBehaviour
         }
         Dictionary<Stat, float> calculateStat = WeaponStatsCalculate.GetStats(weaponData, level);
         ConfigureStatContainers(calculateStat);
+        
+        PurchaseButton.onClick.AddListener(Purchase);
+        PurchaseButton.interactable = CurrencyManager.instance.HasEnoughCurrency(weaponPrice);
+    }
+
+    private void Purchase()
+    {
+        onPurchased?.Invoke(this , weaponLevel); 
     }
 
     private void ConfigureStatContainers(Dictionary<Stat, float> stats)
