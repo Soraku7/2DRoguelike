@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 2287446561811328146}
   - component: {fileID: 9132755711068219401}
   - component: {fileID: 6941242496379996322}
-  - component: {fileID: 4513758284102734979}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -235,18 +234,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &4513758284102734979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624166418304493220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00b7e55e0e4542409eb3876f5907a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1634374748976572632
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +375,7 @@ MonoBehaviour:
   priceText: {fileID: 9132755711068219401}
   statsContainerParent: {fileID: 223736442522890542}
   statContainerPrefab: {fileID: 2164367982369349602, guid: f6831079d8a36ee4a8e06581c660087b, type: 3}
-  <PurchaseButton>k__BackingField: {fileID: 9042598318926739540}
+  purchaseButton: {fileID: 9042598318926739540}
   levelDependentImages:
   - {fileID: 602543016439013422}
   outline: {fileID: 4701418581466315954}

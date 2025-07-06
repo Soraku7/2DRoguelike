@@ -8094,6 +8094,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containersParent: {fileID: 1916820663}
   shopItemContainerPrefab: {fileID: 5768658730166070200, guid: 7ae8c8b3a05365f42a36f79e271c53c7, type: 3}
+  playerWeapons: {fileID: 675005544}
+  playerObjects: {fileID: 675005545}
   rerollButton: {fileID: 1536238640}
   rollPrice: 100
   rerollPriceText: {fileID: 2058251074}
@@ -20190,7 +20192,6 @@ GameObject:
   - component: {fileID: 2058251075}
   - component: {fileID: 2058251074}
   - component: {fileID: 2058251073}
-  - component: {fileID: 2058251072}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -20217,18 +20218,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2058251072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058251070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00b7e55e0e4542409eb3876f5907a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2058251073
 MonoBehaviour:
   m_ObjectHideFlags: 0

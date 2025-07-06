@@ -85,7 +85,7 @@ public class ShopManager : MonoBehaviour , IGameStateListener
     public void Reroll()
     {
         Configure();
-        CurrencyManager.instance.UseCoins(rollPrice);
+        CurrencyManager.instance.UseCurrency(rollPrice);
     }
 
     private void UpdateRerollVisual()
@@ -102,14 +102,28 @@ public class ShopManager : MonoBehaviour , IGameStateListener
     
     private void ItemPurchasedCallback(ShopItemContainer container, int weaponLevel)
     {
-        if (container.WeaponData != null) TryPurchaseWeapon(container.WeaponData, weaponLevel);
+        if (container.WeaponData != null) TryPurchaseWeapon(container, weaponLevel);
+        else PurchaseObject(container);
     }
 
-    private void TryPurchaseWeapon(WeaponDataSO container, int weaponLevel)
+    private void PurchaseObject(ShopItemContainer container)
     {
-        if (playerWeapons.TryAddWeapon(container, weaponLevel))
+        playerObjects.AddObject(container.ObjectData);
+        
+        CurrencyManager.instance.UseCurrency(container.ObjectData.Price);
+        
+        Destroy(container.gameObject);
+    }
+
+    private void TryPurchaseWeapon(ShopItemContainer container, int weaponLevel)
+    {
+        if (playerWeapons.TryAddWeapon(container.WeaponData, weaponLevel))
         {
+            int price = WeaponStatsCalculate.GetPruchasePrice(container.WeaponData, weaponLevel);
+            CurrencyManager.instance.UseCurrency(price);
             
+            Destroy(container.gameObject);
         }
     }
+    
 }

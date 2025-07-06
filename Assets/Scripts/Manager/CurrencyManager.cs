@@ -51,7 +51,7 @@ public class CurrencyManager : MonoBehaviour
         return Currency >= price;
     }
 
-    public void UseCoins(int price)
+    public void UseCurrency(int price)
     {
         AddCurrency(-price);
         UpdateTexts();
