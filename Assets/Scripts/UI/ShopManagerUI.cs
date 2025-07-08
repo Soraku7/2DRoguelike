@@ -1,5 +1,6 @@
 using System.Collections;
 using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class ShopManagerUI : MonoBehaviour
@@ -15,19 +16,33 @@ public class ShopManagerUI : MonoBehaviour
     [SerializeField] private GameObject inventoryClosePanel;
     
     private float inventoryWidth;
+    
+	[Header("Item Info Elements")]
+    [SerializeField] private RectTransform itemInfoPanel;
+    
+    private float itemheight;
+    
     IEnumerator Start()
     {
         yield return null;
         
         ConfigurePlayerStatsPanel();
         ConfigureInventoryPanel();
+        ConfigureItemInfoPanel();
+    }
+
+    private void ConfigureItemInfoPanel()
+    {
+        itemheight = Screen.height / (2 * itemInfoPanel.lossyScale.x);
+        itemInfoPanel.offsetMax = itemInfoPanel.offsetMax.With(y: itemheight);
+        
+        itemInfoPanel.gameObject.SetActive(false);
     }
 
     private void ConfigureInventoryPanel()
     {
         inventoryWidth = Screen.width / (4f * inventoryPanel.lossyScale.x);
-        inventoryPanel.offsetMax = inventoryPanel.offsetMin.With(x: -inventoryWidth);
-        Debug.Log(inventoryPanel.offsetMin.With(x: -inventoryWidth));
+        inventoryPanel.offsetMin = inventoryPanel.offsetMax.With(x: -inventoryWidth);
         HideInventory();
     }
 
@@ -62,11 +77,32 @@ public class ShopManagerUI : MonoBehaviour
         inventoryPanel.DOAnchorPos(Vector2.left * (inventoryWidth / 2), 0.5f);
     }
 
-    public void HideInventory()
+    public void HideInventory(bool hideItemInfo = true)
     {
         inventoryClosePanel.SetActive(false);
         
         inventoryPanel.DOKill();
         inventoryPanel.DOAnchorPos(Vector2.right * (inventoryWidth / 2), 0.5f);
+        
+        if(hideItemInfo) HideItemInfo();
+    }
+    
+    [Button]
+    public void ShowItemInfo()
+    {
+        itemInfoPanel.gameObject.SetActive(true);
+        
+        itemInfoPanel.DOKill();
+        itemInfoPanel.DOAnchorPos(Vector2.up * (itemheight / 2), 0.5f);
+    }
+    
+    [Button]
+    public void HideItemInfo()
+    {
+        itemInfoPanel.DOKill();
+        itemInfoPanel.DOAnchorPos(Vector2.down * (itemheight / 2), 0.5f).OnComplete(() =>
+        {
+            itemInfoPanel.gameObject.SetActive(false);
+        });
     }
 }
