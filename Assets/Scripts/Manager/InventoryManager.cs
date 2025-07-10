@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour , IGameStateListener
@@ -11,6 +12,17 @@ public class InventoryManager : MonoBehaviour , IGameStateListener
     [SerializeField] private InventoryItemContainer inventoryItemContainer;
     [SerializeField] private ShopManagerUI shopManagerUI;
     [SerializeField] private InventoryItemInfo itemInfo;
+
+    private void Awake()
+    {
+        ShopManager.onItemPurchased += ItemPurchasedCallback;
+    }
+
+    private void OnDestroy()
+    {
+        ShopManager.onItemPurchased -= ItemPurchasedCallback;
+    }
+
     public void GameStateChangedCallback(GameState gameState)
     {
         if (gameState == GameState.SHOP) Configure();
@@ -48,12 +60,32 @@ public class InventoryManager : MonoBehaviour , IGameStateListener
     private void ShowObjectInfo(ObjectDataSO containerObjectData)
     {
         itemInfo.Configure(containerObjectData);
+        
+                
+        itemInfo.RecycleButton.onClick.RemoveAllListeners();
+        itemInfo.RecycleButton.onClick.AddListener(() => RecycleObject(containerObjectData));
+        
         shopManagerUI.ShowItemInfo();
+    }
+
+    private void RecycleObject(ObjectDataSO objectData)
+    {
+        playerObjects.RecycleObject(objectData);
+        
+        Configure();
+        
+        shopManagerUI.HideItemInfo();
     }
 
     private void ShowWeaponInfo(Weapon containerWeapon)
     {
         itemInfo.Configure(containerWeapon);
         shopManagerUI.ShowItemInfo();
+    }
+    
+    
+    private void ItemPurchasedCallback()
+    {
+        Configure();
     }
 }

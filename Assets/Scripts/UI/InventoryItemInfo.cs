@@ -11,16 +11,23 @@ public class InventoryItemInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI recyclePriceText;
     
     [Header("Color")]
-    [SerializeField] private Color container;
+    [SerializeField] private Image container;
     
     [Header("Stats")]
     [SerializeField] private Transform statsParent;
+
+    [Header("Buttons")] 
+    [field: SerializeField] public Button RecycleButton {get ; private set; }
+    [SerializeField] private Button mergeButton;
+    
 
     public void Configure(Weapon weapon)
     {
         Configure(weapon.WeaponData.Sprite, weapon.WeaponData.Name + " " + weapon.Level,
             ColorHolder.GetColor(weapon.Level), WeaponStatsCalculate.GetRecyclePrice(weapon.WeaponData, weapon.Level),
             WeaponStatsCalculate.GetStats(weapon.WeaponData , weapon.Level));
+        
+        mergeButton.gameObject.SetActive(true);
     }
 
     public void Configure(ObjectDataSO objectData)
@@ -28,6 +35,8 @@ public class InventoryItemInfo : MonoBehaviour
         Configure(objectData.Icon, objectData.Name, 
             ColorHolder.GetColor(objectData.Rarity), objectData.RecyclePrice,
             objectData.BaseStats);
+        
+        mergeButton.gameObject.SetActive(false);
     }
     
     private void Configure(Sprite itemIcon, string name, Color containerColor, int recyclePrice,
@@ -39,7 +48,7 @@ public class InventoryItemInfo : MonoBehaviour
         
         recyclePriceText.text = recyclePrice.ToString();
 
-        container = containerColor;
+        container.color = containerColor;
 
         StatContainerManager.GenerateStatContainer(stats , statsParent);
     }
