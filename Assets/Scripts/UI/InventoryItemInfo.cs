@@ -23,11 +23,15 @@ public class InventoryItemInfo : MonoBehaviour
 
     public void Configure(Weapon weapon)
     {
-        Configure(weapon.WeaponData.Sprite, weapon.WeaponData.Name + " " + weapon.Level,
+        Configure(weapon.WeaponData.Sprite, weapon.WeaponData.Name + " " + weapon.Level + 1,
             ColorHolder.GetColor(weapon.Level), WeaponStatsCalculate.GetRecyclePrice(weapon.WeaponData, weapon.Level),
             WeaponStatsCalculate.GetStats(weapon.WeaponData , weapon.Level));
         
         mergeButton.gameObject.SetActive(true);
+        mergeButton.interactable = WeaponMerge.instance.CanMerge(weapon);
+        
+        mergeButton.onClick.RemoveAllListeners();
+        mergeButton.onClick.AddListener(() => WeaponMerge.instance.Merge());
     }
 
     public void Configure(ObjectDataSO objectData)

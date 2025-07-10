@@ -91,7 +91,7 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
         range = calculatedStats[Stat.Range];
     }
 
-    public void UpgrateTo(int targetLevel)
+    public void UpgratdTo(int targetLevel)
     {
         Level = targetLevel;
         ConfigureStats();
@@ -101,5 +101,10 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
     public int GetRecyclePrice()
     {
         return WeaponStatsCalculate.GetRecyclePrice(WeaponData, Level);
+    }
+
+    public void Upgrade()
+    {
+        UpgratdTo(Level + 1);
     }
 }
