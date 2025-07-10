@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour , IGameStateListener
     [Header("Elements")] 
     [SerializeField] private Transform inventoryItemsParent;
     [SerializeField] private InventoryItemContainer inventoryItemContainer;
+    [SerializeField] private ShopManagerUI shopManagerUI;
+    [SerializeField] private InventoryItemInfo itemInfo;
     public void GameStateChangedCallback(GameState gameState)
     {
         if (gameState == GameState.SHOP) Configure();
@@ -23,11 +25,8 @@ public class InventoryManager : MonoBehaviour , IGameStateListener
         for (int i = 0; i < weapons.Length; i++)
         {
             InventoryItemContainer container = Instantiate(inventoryItemContainer, inventoryItemsParent);
-
-            Color containerColor = ColorHolder.GetColor(weapons[i].Level);
-            Sprite icon = weapons[i].WeaponData.Sprite;
             
-            container.Configure(containerColor, icon);
+            container.Configure(weapons[i] , () => ShowItemInfo(container));
         }
 
         ObjectDataSO[] objectDatas = playerObjects.Objects.ToArray();
@@ -35,11 +34,26 @@ public class InventoryManager : MonoBehaviour , IGameStateListener
         for (int i = 0; i < objectDatas.Length; i++)
         {
             InventoryItemContainer container = Instantiate(inventoryItemContainer, inventoryItemsParent);
-
-            Color containerColor = ColorHolder.GetColor(objectDatas[i].Rarity);
-            Sprite icon = objectDatas[i].Icon;
             
-            container.Configure(containerColor, icon);
+            container.Configure(objectDatas[i] , () => ShowItemInfo(container));
         }
+    }
+
+    private void ShowItemInfo(InventoryItemContainer container)
+    {
+        if (container.Weapon != null) ShowWeaponInfo(container.Weapon);
+        else ShowObjectInfo(container.ObjectData);
+    }
+
+    private void ShowObjectInfo(ObjectDataSO containerObjectData)
+    {
+        itemInfo.Configure(containerObjectData);
+        shopManagerUI.ShowItemInfo();
+    }
+
+    private void ShowWeaponInfo(Weapon containerWeapon)
+    {
+        itemInfo.Configure(containerWeapon);
+        shopManagerUI.ShowItemInfo();
     }
 }

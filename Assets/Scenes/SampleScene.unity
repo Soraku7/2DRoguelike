@@ -8643,6 +8643,7 @@ GameObject:
   - component: {fileID: 507054689}
   - component: {fileID: 507054691}
   - component: {fileID: 507054690}
+  - component: {fileID: 507054692}
   m_Layer: 5
   m_Name: Item Info Slide Panel
   m_TagString: Untagged
@@ -8709,6 +8710,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507054688}
   m_CullTransparentMesh: 1
+--- !u!114 &507054692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507054688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb171c1750ab25e46a4cf485d19e6e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  itemNameText: {fileID: 0}
+  recyclePriceText: {fileID: 0}
+  container: {r: 0, g: 0, b: 0, a: 0}
+  statsParent: {fileID: 0}
 --- !u!1 &516774252
 GameObject:
   m_ObjectHideFlags: 0
@@ -14255,6 +14273,8 @@ MonoBehaviour:
   playerObjects: {fileID: 675005545}
   inventoryItemsParent: {fileID: 2038222256}
   inventoryItemContainer: {fileID: 519940102756998995, guid: d95a4b8ed51897e4e9b14565fb2183be, type: 3}
+  shopManagerUI: {fileID: 394138792}
+  itemInfo: {fileID: 0}
 --- !u!1 &1282140567
 GameObject:
   m_ObjectHideFlags: 0
@@ -24245,7 +24265,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1760986629372397262}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 394138792}
+        m_TargetAssemblyTypeName: ShopManagerUI, Assembly-CSharp
+        m_MethodName: HideItemInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &6999828242093951972
 RectTransform:
   m_ObjectHideFlags: 0
