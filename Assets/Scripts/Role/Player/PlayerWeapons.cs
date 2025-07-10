@@ -25,11 +25,30 @@ public class PlayerWeapons : MonoBehaviour
 
         foreach (var weaponPosition in weaponPositions)
         {
-            if (weaponPosition.Weapon == null) continue;
-            
-            weapons.Add(weaponPosition.Weapon);
+            if (weaponPosition.Weapon == null) weapons.Add(null);
+            else weapons.Add(weaponPosition.Weapon);
         }
         
         return weapons.ToArray();
+    }
+
+    public void RecycleWeapon(int weaponIndex)
+    {
+        int index = 0;
+        for(int i = 0 ; i < weaponPositions.Length ; i++)
+        {
+            if (index != weaponIndex)
+            {
+                index++;
+                continue;
+            }
+            
+            int recyclePrice = weaponPositions[i].Weapon.GetRecyclePrice();
+            CurrencyManager.instance.AddCurrency(recyclePrice);
+            
+            weaponPositions[i].RemoveWeapon();
+
+            return;
+        }
     }
 }
