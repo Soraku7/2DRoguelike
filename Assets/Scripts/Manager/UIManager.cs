@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Manager;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour , IGameStateListener
@@ -11,6 +12,8 @@ public class UIManager : MonoBehaviour , IGameStateListener
     [SerializeField] private GameObject weaponSelectionPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject stageCompletePanel;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject restartConfirmationPanel;
 
     private List<GameObject> panels = new List<GameObject>();
 
@@ -26,8 +29,30 @@ public class UIManager : MonoBehaviour , IGameStateListener
             gameOverPanel,
             stageCompletePanel
         });
+        
+        
+        GameManager.onGamePaused += GamePausedCallback;
+        GameManager.onGameResumed += GameResumedCallback;
+        
+        pausePanel.SetActive(false);
+        HideRestartConfirmationPanel();
     }
     
+    private void OnDestroy()
+    {
+        GameManager.onGamePaused -= GamePausedCallback;
+        GameManager.onGameResumed -= GameResumedCallback;
+    }
+    
+    private void GameResumedCallback()
+    {
+        pausePanel.SetActive(false);
+    }
+
+    private void GamePausedCallback()
+    {
+        pausePanel.SetActive(true);
+    }    
     public void GameStateChangedCallback(GameState gameState)
     {
         switch (gameState)
@@ -75,5 +100,14 @@ public class UIManager : MonoBehaviour , IGameStateListener
         {
             panel.SetActive(true);
         }
+    }
+    public void ShowRestartConfirmationPanel()
+    {
+        restartConfirmationPanel.SetActive(true);
+    }
+    
+    public void HideRestartConfirmationPanel()
+    {
+        restartConfirmationPanel.SetActive(false);
     }
 }
