@@ -76,7 +76,7 @@ namespace Manager
 
         public void PauseButtonCallback()
         {
-            Time.timeScale = 0; 
+            Time.timeScale = 0;
             onGamePaused?.Invoke();
         }
         
