@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using Tabsil.Sijil;
 
-public class CurrencyManager : MonoBehaviour
+public class CurrencyManager : MonoBehaviour , IWantToBeSaved
 {
     public static CurrencyManager instance;
+    
+    private const string premiumCurrencyKey = "PremiumCurrency";
     
     [field: SerializeField] public int Currency { get; private set; }
     [field: SerializeField] public int PremiumCurrency { get; private set; }
@@ -18,6 +21,9 @@ public class CurrencyManager : MonoBehaviour
         
         Candy.onCollection += CandyCollectedCallback;
         Cash.onCollection += CashCollectedCallback;
+
+        
+        // AddPremiumCurrency(PlayerPrefs.GetInt(premiumCurrencyKey, 0) , false);
     }
 
 
@@ -62,17 +68,21 @@ public class CurrencyManager : MonoBehaviour
         UpdateVisual();
     }
     
-    public void AddPremiumCurrency(int amount)
+    public void AddPremiumCurrency(int amount , bool save = true)
     {
         PremiumCurrency += amount;
         Debug.Log($"Premium currency added: {amount}. Total premium currency: {PremiumCurrency}");
         UpdateVisual();
+        
+        // PlayerPrefs.SetInt(premiumCurrencyKey, PremiumCurrency);
     }
 
     private void UpdateVisual()
     {
         UpdateTexts();
         onUpdate?.Invoke();
+        
+        Save();
     }
 
     private void UpdateTexts()
@@ -112,5 +122,16 @@ public class CurrencyManager : MonoBehaviour
     {
         AddPremiumCurrency(-price);
         UpdateTexts();
+    }
+
+    public void Load()
+    {
+        if(Sijil.TryLoad(this , premiumCurrencyKey , out object premiumCurrencyValue)) AddPremiumCurrency((int)premiumCurrencyValue , false);
+        else AddPremiumCurrency(100 , false);
+    }
+
+    public void Save()
+    {
+        Sijil.Save(this , premiumCurrencyKey , PremiumCurrency);
     }
 }
