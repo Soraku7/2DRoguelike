@@ -5,6 +5,7 @@ public static class ResourcesManager
     private const string statIconsDataPath = "Data/Stat Icons";
     private const string objectsDataPath = "Data/Objects/";
     private const string weaponsDataPath = "Data/Weapons/";
+    private const string characterDataPath = "Data/Characters/";
 
     
     private static StatIcon[] statIcons;
@@ -74,5 +75,22 @@ public static class ResourcesManager
     public static WeaponDataSO GetRandomWeapon()
     {
         return Weapons[Random.Range(0, Weapons.Length)];
+    }
+    
+    private static CharacterDataSO[] characterDatas;
+    public static CharacterDataSO[] Characters
+    {
+        get
+        {
+            if(characterDatas == null)
+            {
+                characterDatas = Resources.LoadAll<CharacterDataSO>(characterDataPath); 
+            }
+            return characterDatas;
+        }
+        private set
+        {
+            
+        }
     }
 }
