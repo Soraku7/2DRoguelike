@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
+using Tabsil.Sijil;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class CharacterSelectionManager : MonoBehaviour
+public class CharacterSelectionManager : MonoBehaviour , IWantToBeSaved
 {
     [Header("Elements")] 
     [SerializeField] private Transform characterButtonsParent;
@@ -15,26 +17,22 @@ public class CharacterSelectionManager : MonoBehaviour
     [Header("Data")]
     private CharacterDataSO[] characterDatas;
     private List<bool> unLockedStats = new List<bool>();
+    private const string unlockedStatsKey = "UnlockedStatsKey";
+    private const string lastSelectedCharacterKey = "LastSelectedCharacterKey";
     
     [Header("Settings")]
     private int selectedCharacterIndex;
-
-    private void Awake()
-    {
-        characterDatas = ResourcesManager.Characters;
-        
-        for(int i = 0 ; i < characterDatas.Length; i++)
-        {
-            unLockedStats.Add(false);
-        }
-    }
-
+    private int lastSelectedCharacterIndex;
+    
+    [Header("Action")]
+    public static Action<CharacterDataSO> OnCharacterSelected;
+    
     private void Start()
     {
         characterInfoPanel.Button.onClick.RemoveAllListeners();
         characterInfoPanel.Button.onClick.AddListener(PurchaseSelectedCharacter);
-        
-        Initialize();
+
+        CharacterSelectionCallback(lastSelectedCharacterIndex);
     }
     
     private void Initialize()
@@ -63,7 +61,14 @@ public class CharacterSelectionManager : MonoBehaviour
         
         CharacterDataSO characterData = characterDatas[index];
 
-        if (unLockedStats[index]) characterInfoPanel.Button.interactable = false;
+        if (unLockedStats[index])
+        {
+            lastSelectedCharacterIndex = index;
+            characterInfoPanel.Button.interactable = false;
+            Save();
+            
+            OnCharacterSelected?.Invoke(characterData);
+        }
         else CurrencyManager.instance.HasEnoughPremiumCurrency(characterData.PurchasePrice);
         
         centerCharacterImage.sprite = characterData.Sprite;
@@ -80,6 +85,32 @@ public class CharacterSelectionManager : MonoBehaviour
         characterButtonsParent.GetChild(selectedCharacterIndex).GetComponent<CharacterButton>().UnLock();
         
         CharacterSelectionCallback(selectedCharacterIndex);
+        
+        Save();
     }
 
+    public void Load()
+    {
+        characterDatas = ResourcesManager.Characters;
+        
+        for(int i = 0 ; i < characterDatas.Length; i++)
+        {
+            unLockedStats.Add(false);
+        }
+        
+        if(Sijil.TryLoad(this , unlockedStatsKey , out object unlockedStatsObject)) unLockedStats = (List<bool>)unlockedStatsObject;
+        if (Sijil.TryLoad(this, lastSelectedCharacterKey, out object lastSelectedCharacterObject))
+            lastSelectedCharacterIndex = (int)lastSelectedCharacterObject;
+        
+        Initialize();
+        
+
+    }
+
+    public void Save()
+    {
+       Sijil.Save(this , unlockedStatsKey , unLockedStats);
+       Sijil.Save(this , lastSelectedCharacterKey , lastSelectedCharacterIndex);
+    }
+    
 }

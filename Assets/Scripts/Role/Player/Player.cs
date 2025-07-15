@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private PlayerLevel playerLevel;
 
     [SerializeField] private CircleCollider2D collider;
+    [SerializeField] private SpriteRenderer playerRenderer;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -18,6 +19,13 @@ public class Player : MonoBehaviour
         
         playerHealth = GetComponent<PlayerHealth>();
         playerLevel = GetComponent<PlayerLevel>();
+        
+        CharacterSelectionManager.OnCharacterSelected += CharacterSelectedCallback;
+    }
+
+    private void OnDestroy()
+    {
+        CharacterSelectionManager.OnCharacterSelected -= CharacterSelectedCallback;
     }
 
     public void TakeDamage(int damage)
@@ -33,5 +41,10 @@ public class Player : MonoBehaviour
     public bool HasLevelUp()
     {
         return playerLevel.HasLevelUp();
+    }
+
+    private void CharacterSelectedCallback(CharacterDataSO characterData)
+    {
+        playerRenderer.sprite = characterData.Sprite;
     }
 }

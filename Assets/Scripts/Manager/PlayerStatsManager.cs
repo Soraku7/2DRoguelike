@@ -24,11 +24,18 @@ public class PlayerStatsManager : MonoBehaviour
             addends.Add(stat.Key, 0f);
             objectAddends.Add(stat.Key, 0f);
         }
+        
+        CharacterSelectionManager.OnCharacterSelected += CharacterSelectedCallback;
     }
 
     private void Start()
     {
         UpdatePlayerStats();
+    }
+    
+    private void OnDestroy()
+    {
+        CharacterSelectionManager.OnCharacterSelected -= CharacterSelectedCallback;
     }
 
     public void AddPlayerStat(Stat stat , float value)
@@ -78,6 +85,14 @@ public class PlayerStatsManager : MonoBehaviour
             var key = keys[i];
             objectAddends[key] -= objectStats[key];
         }
+        
+        UpdatePlayerStats();
+    }
+    
+    private void CharacterSelectedCallback(CharacterDataSO characterData)
+    {
+        playerData = characterData;
+        playerStats = playerData.BaseStats;
         
         UpdatePlayerStats();
     }
