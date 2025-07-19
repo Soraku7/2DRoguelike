@@ -11,6 +11,9 @@ public class RangeWeapon : Weapon
     [Header("Pooling")]
     private ObjectPool<Bullet> bulletPool;
 
+    [Header("Actions")]
+    public static Action onBulletShot;
+    
     private void Start()
     {
         bulletPool = new ObjectPool<Bullet>(CreateFunction, ActionOnGet, ActionOnRelease, ActionOnDestroy);
@@ -86,6 +89,8 @@ public class RangeWeapon : Weapon
         
         Bullet bulletInstance = bulletPool.Get();
         bulletInstance.Shoot(damage , transform.up , isCriticalHit);
+        
+        onBulletShot?.Invoke();
     }
 
 

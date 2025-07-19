@@ -7585,6 +7585,7 @@ GameObject:
   - component: {fileID: 149255837}
   - component: {fileID: 149255840}
   - component: {fileID: 149255838}
+  - component: {fileID: 149255841}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -7676,6 +7677,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149255836}
   m_CullTransparentMesh: 1
+--- !u!114 &149255841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149255836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc7e27624eba214ca3f4d7a1744ad1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &171710538
 GameObject:
   m_ObjectHideFlags: 0
@@ -12724,6 +12737,7 @@ GameObject:
   - component: {fileID: 344159379}
   - component: {fileID: 344159381}
   - component: {fileID: 344159380}
+  - component: {fileID: 344159382}
   m_Layer: 5
   m_Name: Premium Currency Container
   m_TagString: Untagged
@@ -12790,6 +12804,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344159378}
   m_CullTransparentMesh: 1
+--- !u!114 &344159382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344159378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea0e39ece32007499400ab33bd2dadc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &352988459
 GameObject:
   m_ObjectHideFlags: 0
@@ -14756,7 +14782,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14876,13 +14902,13 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1212673451}
+  m_Father: {fileID: 1124646333}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
+--- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14891,11 +14917,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd38db5ab553644bbc75617e4bb732c, type: 3}
+  m_Script: {fileID: 11500000, guid: 61db4b74fa0537345b7c70f74f1d0720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 675005538}
-  minMaxXY: {x: 5, y: 3}
+  shakeMagnitude: 0.1
+  shakeFrequency: 0.1
 --- !u!1 &528064488
 GameObject:
   m_ObjectHideFlags: 0
@@ -21848,6 +21874,7 @@ GameObject:
   - component: {fileID: 837808686}
   - component: {fileID: 837808688}
   - component: {fileID: 837808687}
+  - component: {fileID: 837808689}
   m_Layer: 5
   m_Name: Dave Icon
   m_TagString: Untagged
@@ -21912,6 +21939,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837808685}
   m_CullTransparentMesh: 1
+--- !u!114 &837808689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837808685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389c0f880d1007e42b7313032837fa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842742299
 GameObject:
   m_ObjectHideFlags: 0
@@ -25992,6 +26031,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121410160}
   m_CullTransparentMesh: 1
+--- !u!1 &1124646332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1124646333}
+  - component: {fileID: 1124646334}
+  m_Layer: 0
+  m_Name: Camera Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1124646333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124646332}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 519420032}
+  m_Father: {fileID: 1212673451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1124646334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124646332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd38db5ab553644bbc75617e4bb732c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 675005538}
+  minMaxXY: {x: 5, y: 3}
 --- !u!1 &1130779884
 GameObject:
   m_ObjectHideFlags: 0
@@ -26666,6 +26752,7 @@ GameObject:
   - component: {fileID: 1166197696}
   - component: {fileID: 1166197698}
   - component: {fileID: 1166197697}
+  - component: {fileID: 1166197699}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -26730,6 +26817,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166197695}
   m_CullTransparentMesh: 1
+--- !u!114 &1166197699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166197695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389c0f880d1007e42b7313032837fa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172090353
 GameObject:
   m_ObjectHideFlags: 0
@@ -27029,6 +27128,7 @@ GameObject:
   - component: {fileID: 1190198998}
   - component: {fileID: 1190198997}
   - component: {fileID: 1190198996}
+  - component: {fileID: 1190198999}
   m_Layer: 5
   m_Name: Start Game Buttom
   m_TagString: Untagged
@@ -27152,6 +27252,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190198994}
   m_CullTransparentMesh: 1
+--- !u!114 &1190198999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190198994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc7e27624eba214ca3f4d7a1744ad1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1195046325
 GameObject:
   m_ObjectHideFlags: 0
@@ -27386,7 +27498,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 519420032}
+  - {fileID: 1124646333}
   - {fileID: 619394802}
   - {fileID: 499473616}
   - {fileID: 1068541383}
@@ -27958,7 +28070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 675005540}
-  waveDuration: 1
+  waveDuration: 30
   waves:
   - name: Wave01
     segments:
@@ -42617,6 +42729,7 @@ GameObject:
   - component: {fileID: 2079032009}
   - component: {fileID: 2079032008}
   - component: {fileID: 2079032007}
+  - component: {fileID: 2079032010}
   m_Layer: 5
   m_Name: Character Selection Button
   m_TagString: Untagged
@@ -42741,6 +42854,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079032005}
   m_CullTransparentMesh: 1
+--- !u!114 &2079032010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079032005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc7e27624eba214ca3f4d7a1744ad1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2080851864
 GameObject:
   m_ObjectHideFlags: 0
