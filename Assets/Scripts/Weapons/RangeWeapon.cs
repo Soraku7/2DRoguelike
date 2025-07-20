@@ -91,6 +91,8 @@ public class RangeWeapon : Weapon
         bulletInstance.Shoot(damage , transform.up , isCriticalHit);
         
         onBulletShot?.Invoke();
+        
+        PlayAttackSound();
     }
 
 

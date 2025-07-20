@@ -30,6 +30,24 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
     protected int criticalChance;
     protected float criticalPercent;
     
+    [Header("Audio")]
+    protected AudioSource audioSource;
+
+    protected void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = WeaponData.AttackSound;
+    }
+
+    protected void PlayAttackSound()
+    {
+        if(!AudioManager.instance.IsSFXOn) return;
+        
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.Play();
+    }
+
 
     protected Enemy GetClosestEnemy()
     {

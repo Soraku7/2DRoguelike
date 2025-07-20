@@ -44,6 +44,14 @@ public class SettingsManager : MonoBehaviour , IWantToBeSaved
         creditsButton.onClick.RemoveAllListeners();
         creditsButton.onClick.AddListener(CreditsButtonCallback);
     }
+
+    private void Start()
+    {
+        HideCreditsPanel();
+        
+        onSFXStateChanged?.Invoke(sfxState);
+        onMusicStateChanged?.Invoke(musicState);
+    }
     
     private void CreditsButtonCallback()
     {

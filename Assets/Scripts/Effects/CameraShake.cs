@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CaneraShake : MonoBehaviour
+public class CameraShake : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float shakeMagnitude;
