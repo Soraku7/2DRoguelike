@@ -170,4 +170,10 @@ public class Zoomby : Enemy
 
         return targetPosition;
     }
+
+    public override void PassAway()
+    {
+        onBossPassedAway?.Invoke(transform.position);
+        PassAwayAfterWave();
+    }
 }

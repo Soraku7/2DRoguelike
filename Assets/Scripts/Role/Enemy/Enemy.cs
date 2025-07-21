@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Action")]
     public static Action<int , Vector2 , bool> onDamageTaken;
     public static Action<Vector2> onPassedAway;
+    public static Action<Vector2> onBossPassedAway;
     protected Action onSpawnSequenceComplete;
     
     [Header("Debugger")]
@@ -83,7 +84,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
         
-    public void PassAway()
+    public virtual void PassAway()
     {
         onPassedAway?.Invoke(transform.position);
 
@@ -114,6 +115,11 @@ public abstract class Enemy : MonoBehaviour
         {
             PassAway();
         }
+    }
+
+    public Vector2 GetCenter()
+    {
+        return (Vector2)transform.position + collider.offset;
     }
     
     private void OnDrawGizmos()

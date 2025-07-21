@@ -21,6 +21,7 @@ public class DropManager : MonoBehaviour
     private void Awake()
     {
         Enemy.onPassedAway += EnemyPassAwayCallBack;
+        Enemy.onBossPassedAway += BossEnemyPassAwayCallBack;
         Candy.onCollection += ReleaseCandy;
         Cash.onCollection += ReleaseCash;
     }
@@ -42,6 +43,7 @@ public class DropManager : MonoBehaviour
         Enemy.onPassedAway -= EnemyPassAwayCallBack;
         Candy.onCollection -= ReleaseCandy;
         Cash.onCollection -= ReleaseCash;
+        Enemy.onBossPassedAway -= BossEnemyPassAwayCallBack;
     }
 
     #region CandyPool
@@ -102,6 +104,12 @@ public class DropManager : MonoBehaviour
     #endregion
 
 
+
+    private void BossEnemyPassAwayCallBack(Vector2 bossPosition)
+    {
+        DropChest(bossPosition);
+    }
+    
     private void EnemyPassAwayCallBack(Vector2 enemyPosition)
     {
         bool shouldSpawnCash = Random.Range(0, 101) <= cashDropChance;
@@ -118,6 +126,12 @@ public class DropManager : MonoBehaviour
 
         if (!shouldSpawnChest) return;
         
+        Instantiate(chestPrefab , spawnPosition , Quaternion.identity , transform);
+
+    }
+
+    private void DropChest(Vector2 spawnPosition)
+    {
         Instantiate(chestPrefab , spawnPosition , Quaternion.identity , transform);
 
     }
