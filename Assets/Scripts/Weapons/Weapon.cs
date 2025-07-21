@@ -39,7 +39,7 @@ public abstract class Weapon : MonoBehaviour , IPlayerStatsDepdendency
         audioSource.playOnAwake = false;
         audioSource.clip = WeaponData.AttackSound;
         
-        if(animator != null) animator.runtimeAnimatorController = WeaponData.AnimatorOverride; 
+        if(animator != null && WeaponData.AnimatorOverride != null) animator.runtimeAnimatorController = WeaponData.AnimatorOverride; 
     }
 
     protected void PlayAttackSound()

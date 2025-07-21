@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Action")]
     public static Action<int , Vector2 , bool> onDamageTaken;
     public static Action<Vector2> onPassedAway;
+    protected Action onSpawnSequenceComplete;
     
     [Header("Debugger")]
     [SerializeField] protected bool debug;
@@ -69,7 +70,9 @@ public abstract class Enemy : MonoBehaviour
             hasSpawn = true;
             collider.enabled = true;
 
-            movement.StorePlayer(player);
+            if(movement != null) movement.StorePlayer(player);
+            
+            onSpawnSequenceComplete?.Invoke();
         });
     }
     
