@@ -14,6 +14,7 @@ public class EnemyBullet : MonoBehaviour
 
     [Header("Settings")] 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float angularSpeed;
     private int damage;
 
     private void Awake()
@@ -46,9 +47,12 @@ public class EnemyBullet : MonoBehaviour
     public void Shoot(int damage , Vector2 direction)
     {
         this.damage = damage;
+
+        if (Mathf.Abs(direction.x + 1) < 0.01f) direction.y += 0.1f;
         
         transform.right = direction;
         rig.linearVelocity = direction * moveSpeed;
+        rig.angularVelocity = angularSpeed;
     }
 
     public void Configure(RangeEnemyAttack rangeEnemyAttack)
@@ -59,6 +63,16 @@ public class EnemyBullet : MonoBehaviour
     public void Reload()
     {
         rig.linearVelocity = Vector2.zero;
+        rig.angularVelocity = 0;
         collider.enabled = true;
+        
+        DOTween.Clear();
+        float timer = 0;
+        //DOTwwen.To()中参数：前两个参数是固定写法，第三个是到达的最终值，第四个是渐变过程所用的时间
+        Tween t = DOTween.To(() => timer, x => timer = x, 1, 5f)
+            .OnStepComplete(() =>
+            {
+                rangeEnemyAttack.ReleaseBullet(this);
+            });
     }
 }
