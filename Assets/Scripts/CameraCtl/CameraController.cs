@@ -1,4 +1,5 @@
 using System;
+using Manager;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -19,8 +20,11 @@ public class CameraControl : MonoBehaviour
         Vector3 targetPos = target.position;
         targetPos.z = -10;
         
-        targetPos.x = Mathf.Clamp(targetPos.x, -minMaxXY.x, minMaxXY.x);
-        targetPos.y = Mathf.Clamp(targetPos.y, -minMaxXY.y, minMaxXY.y);
+        if(!GameManager.instance.UseInfiniteMap)
+        {
+            targetPos.x = Mathf.Clamp(targetPos.x, -minMaxXY.x, minMaxXY.x);
+            targetPos.y = Mathf.Clamp(targetPos.y, -minMaxXY.y, minMaxXY.y);
+        }
 
         transform.position = targetPos;
     }
