@@ -19,9 +19,8 @@ public class PlayerCtrl : MonoBehaviour , IPlayerStatsDepdendency
     }
 
     private void FixedUpdate()
-    {
-        rig.linearVelocity = joystick.GetMoveVector() * (moveSpeed * Time.deltaTime);
-
+    { 
+        rig.linearVelocity = InputManager.instance.GetMoveVector() * (moveSpeed * Time.deltaTime);
     }
 
     public void UpdateStats(PlayerStatsManager playerStatsManager)

@@ -64,7 +64,8 @@ public abstract class Enemy : MonoBehaviour
         spawnIndicator.enabled = true;
         
         Vector3 targetScale = spawnIndicator.transform.localScale * 1.3f;
-        spawnIndicator.transform.DOScale(targetScale, 0.3f).SetLoops(4).OnComplete(() =>
+        
+        LeanTween.scale(spawnIndicator.gameObject , targetScale , 0.3f).setLoopPingPong(4).setOnComplete(() =>
         {
             SetRenderVisibility();
             

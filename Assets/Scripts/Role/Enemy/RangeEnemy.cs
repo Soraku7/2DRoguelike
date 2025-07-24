@@ -18,7 +18,7 @@ public class RangeEnemy : Enemy
         attack = GetComponent<RangeEnemyAttack>();
         attack.StorePlayer(player);
     }
-
+    
     private void Update()
     {
         if (!CanAttack()) return;
@@ -26,11 +26,11 @@ public class RangeEnemy : Enemy
         
         transform.localScale = player.transform.position.x > transform.position.x ? Vector3.one : Vector3.one.With(x: -1);
     }
-
+    
     private void ManageAttack()
     {
         float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
-
+    
         if (distanceToPlayer > playerDetectRadius)
         {
             movement.FollowPlayer();

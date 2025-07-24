@@ -69,7 +69,7 @@ public class CharacterSelectionManager : MonoBehaviour , IWantToBeSaved
             
             OnCharacterSelected?.Invoke(characterData);
         }
-        else CurrencyManager.instance.HasEnoughPremiumCurrency(characterData.PurchasePrice);
+        else characterInfoPanel.Button.interactable = CurrencyManager.instance.HasEnoughPremiumCurrency(characterData.PurchasePrice);
         
         centerCharacterImage.sprite = characterData.Sprite;
         characterInfoPanel.Configure(characterData , unLockedStats[index]);
